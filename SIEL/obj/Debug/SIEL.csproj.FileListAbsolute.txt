@@ -8,3 +8,13 @@ c:\users\usuario\source\repos\SIEL\SIEL\obj\Debug\SIEL.csproj.GenerateResource.c
 c:\users\usuario\source\repos\SIEL\SIEL\obj\Debug\SIEL.csproj.CoreCompileInputs.cache
 c:\users\usuario\source\repos\SIEL\SIEL\obj\Debug\SIEL.exe
 c:\users\usuario\source\repos\SIEL\SIEL\obj\Debug\SIEL.pdb
+C:\Users\Daiana\Source\Repos\tp-superior\SIEL\bin\Debug\SIEL.exe.config
+C:\Users\Daiana\Source\Repos\tp-superior\SIEL\bin\Debug\SIEL.exe
+C:\Users\Daiana\Source\Repos\tp-superior\SIEL\bin\Debug\SIEL.pdb
+C:\Users\Daiana\Source\Repos\tp-superior\SIEL\obj\Debug\SIEL.csprojAssemblyReference.cache
+C:\Users\Daiana\Source\Repos\tp-superior\SIEL\obj\Debug\SIEL.Form1.resources
+C:\Users\Daiana\Source\Repos\tp-superior\SIEL\obj\Debug\SIEL.Properties.Resources.resources
+C:\Users\Daiana\Source\Repos\tp-superior\SIEL\obj\Debug\SIEL.csproj.GenerateResource.cache
+C:\Users\Daiana\Source\Repos\tp-superior\SIEL\obj\Debug\SIEL.csproj.CoreCompileInputs.cache
+C:\Users\Daiana\Source\Repos\tp-superior\SIEL\obj\Debug\SIEL.exe
+C:\Users\Daiana\Source\Repos\tp-superior\SIEL\obj\Debug\SIEL.pdb
