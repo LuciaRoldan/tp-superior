@@ -19,6 +19,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 
 public class Ventana {
@@ -30,6 +32,9 @@ public class Ventana {
 	private JLabel lblNro;
 	private JLabel lblNro_1;
 	private JLabel lblSuma;
+	private JTable table;
+	private JTextField textField_1;
+	private JLabel lblHabriaQueHacer;
 
 	/**
 	 * Launch the application.
@@ -58,6 +63,7 @@ public class Ventana {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
 		frmSiel = new JFrame();
 		frmSiel.setBackground(Color.WHITE);
 		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Daiana\\Desktop\\App Superior\\D_Q_NP_613031-MLA27595245923_062018-Q (1).jpg"));
@@ -96,6 +102,11 @@ public class Ventana {
 		textField_3.setEditable(false);
 		textField_3.setColumns(10);
 		
+		textField_1 = new JTextField();
+		textField_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		textField_1.setText("7");
+		textField_1.setColumns(10);
+		
 		JLabel lblA = new JLabel("AX=C");
 		lblA.setFont(new Font("Segoe Print", Font.PLAIN, 15));
 		
@@ -109,45 +120,97 @@ public class Ventana {
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Norma 1", "Norma 2"}));
+		
+		table = new JTable();
+		int numero= Integer.parseInt(textField_1.getText());
+		String[] arrayDeNewColumn = new String[numero] ;
+		for(int i=0; i<numero; i++) {
+			arrayDeNewColumn[i]= "New column";
+		}
+		
+		
+		table.setColumnSelectionAllowed(true);
+		table.setCellSelectionEnabled(true);
+		table.setModel(new DefaultTableModel(
+			new Object[numero][numero] ,  arrayDeNewColumn
+//			new String[]  {
+//				"New column", "New column", "New column", "New column"
+//			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, true, true
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		
+
+		
+		JLabel lblN = new JLabel("n:");
+		
+		JLabel lblElTamaoSe = new JLabel("El tama\u00F1o se ajusta al valor de esa celda, no en ejecuci\u00F3n.  si esta en cero desaparece la matriz.\r\n");
+		lblElTamaoSe.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		lblHabriaQueHacer = new JLabel("Habria que hacer que el usuario lo ingrese o que sea 3 por default. y modificable.");
+		lblHabriaQueHacer.setHorizontalAlignment(SwingConstants.CENTER);
 
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
+			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addContainerGap(153, Short.MAX_VALUE)
+									.addComponent(lblSuma, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
 								.addGroup(gl_panel.createSequentialGroup()
 									.addGap(18)
-									.addComponent(lblA, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+										.addComponent(lblA, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+										.addGroup(gl_panel.createSequentialGroup()
+											.addComponent(lblN)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+									.addPreferredGap(ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
 									.addComponent(lblNro, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.UNRELATED))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addContainerGap(130, Short.MAX_VALUE)
-									.addComponent(lblSuma, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)))
+									.addPreferredGap(ComponentPlacement.RELATED)))
 							.addGap(10))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(lblNro_1, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
 							.addGap(18)))
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(28)
-							.addComponent(btnB)
-							.addPreferredGap(ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-							.addGap(22))
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_panel.createSequentialGroup()
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addContainerGap(298, Short.MAX_VALUE))))
+							.addContainerGap(275, Short.MAX_VALUE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnSiguiente))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(28)
+									.addComponent(btnB)
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)))
+							.addGap(22))))
 				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap(374, Short.MAX_VALUE)
-					.addComponent(btnSiguiente)
-					.addGap(129))
+					.addGap(27)
+					.addComponent(table, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(370, Short.MAX_VALUE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblElTamaoSe)
+					.addContainerGap(107, Short.MAX_VALUE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblHabriaQueHacer, GroupLayout.PREFERRED_SIZE, 463, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(107, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -167,9 +230,19 @@ public class Ventana {
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblSuma))
-					.addGap(191)
+					.addGap(4)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblN))
+					.addGap(18)
+					.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+					.addComponent(lblElTamaoSe)
+					.addGap(18)
+					.addComponent(lblHabriaQueHacer)
+					.addGap(9)
 					.addComponent(btnSiguiente)
-					.addContainerGap(62, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		panel.setLayout(gl_panel);
 	}
