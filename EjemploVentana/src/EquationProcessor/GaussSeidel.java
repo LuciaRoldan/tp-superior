@@ -1,5 +1,5 @@
 package EquationProcessor;
 
-public class Jacobi {
+public class GaussSeidel {
 
 }

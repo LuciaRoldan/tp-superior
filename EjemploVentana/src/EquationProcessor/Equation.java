@@ -1,15 +1,23 @@
 package EquationProcessor;
 
 public class Equation {
-	private int n;
-	private int m;
-	
-	public Equation(int n, int m) {
-		this.n = n;
-		this.m = m;
+	private int decimals;
+	private double error;
+
+	private Matrix coefficients;
+	private Matrix variables;
+	private Matrix independents;
+
+	public Matrix getCoefficients() {
+		return coefficients;
 	}
-	
-	public boolean isDiagonallyDominant() {
-		return true;
+
+	public Matrix getVariables() {
+		return variables;
 	}
+
+	public Matrix getIndependents() {
+		return independents;
+	}
+
 }
