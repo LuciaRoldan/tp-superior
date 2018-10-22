@@ -95,6 +95,29 @@ public class Ventana {
 		btnB.setForeground(Color.BLACK);
 		btnB.setBackground(Color.MAGENTA);
 		
+		JButton btnChangeMatrix = new JButton("Cambiar matriz");
+		btnChangeMatrix.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			
+				int matrixSize = Integer.parseInt(textField_1.getText());
+
+				String[] arrayDeNewColumn = new String[matrixSize] ;
+				for(int i=0; i<matrixSize; i++) {
+					arrayDeNewColumn[i]= "New column";
+				}
+
+				table.setModel(new DefaultTableModel(new Object[matrixSize][matrixSize] ,  arrayDeNewColumn) {
+					boolean[] columnEditables = new boolean[] {
+						false, true, true
+					};
+					public boolean isCellEditable(int row, int column) {
+						return columnEditables[column];
+					}
+				});
+				
+			}
+		});
+		
 		textField = new JTextField();
 		textField.setColumns(10);
 		
@@ -107,7 +130,7 @@ public class Ventana {
 		textField_1.setText("7");
 		textField_1.setColumns(10);
 		
-		JLabel lblA = new JLabel("AX=C");
+		JLabel lblA = new JLabel("AX=B");
 		lblA.setFont(new Font("Segoe Print", Font.PLAIN, 15));
 		
 		lblNro = new JLabel("Nro 1");
@@ -131,12 +154,7 @@ public class Ventana {
 		
 		table.setColumnSelectionAllowed(true);
 		table.setCellSelectionEnabled(true);
-		table.setModel(new DefaultTableModel(
-			new Object[numero][numero] ,  arrayDeNewColumn
-//			new String[]  {
-//				"New column", "New column", "New column", "New column"
-//			}
-		) {
+		table.setModel(new DefaultTableModel(new Object[numero][numero] ,  arrayDeNewColumn) {
 			boolean[] columnEditables = new boolean[] {
 				false, true, true
 			};
@@ -191,7 +209,7 @@ public class Ventana {
 							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 								.addGroup(gl_panel.createSequentialGroup()
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnSiguiente))
+									.addComponent(btnChangeMatrix))
 								.addGroup(gl_panel.createSequentialGroup()
 									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 									.addGap(28)
@@ -241,7 +259,7 @@ public class Ventana {
 					.addGap(18)
 					.addComponent(lblHabriaQueHacer)
 					.addGap(9)
-					.addComponent(btnSiguiente)
+					.addComponent(btnChangeMatrix)
 					.addContainerGap())
 		);
 		panel.setLayout(gl_panel);
