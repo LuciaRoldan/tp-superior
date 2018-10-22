@@ -29,13 +29,15 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class Ventana {
 
 	private JFrame frmSiel;
 	private JTable table;
-	private JTextField textField_1;
+	private JTextField textFieldCantidadEcuaciones;
 	private JTable table_1;
 
 	/**
@@ -65,7 +67,7 @@ public class Ventana {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
+		int cantidadEcuaciones;
 		frmSiel = new JFrame();
 		frmSiel.setBackground(Color.WHITE);
 		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Daiana\\Desktop\\App Superior\\D_Q_NP_613031-MLA27595245923_062018-Q (1).jpg"));
@@ -82,7 +84,7 @@ public class Ventana {
 		btnChangeMatrix.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
-				int matrixSize = Integer.parseInt(textField_1.getText());
+				int matrixSize = Integer.parseInt(textFieldCantidadEcuaciones.getText());
 
 				String[] arrayDeNewColumn = new String[matrixSize] ;
 				for(int i=0; i<matrixSize; i++) {
@@ -114,8 +116,8 @@ public class Ventana {
 			}
 		});
 		
-		textField_1 = new JTextField();
-		textField_1.addKeyListener(new KeyAdapter() {
+		textFieldCantidadEcuaciones = new JTextField();
+		textFieldCantidadEcuaciones.addKeyListener(new KeyAdapter() {
 		         public void keyTyped(KeyEvent e) {
 		           char c = e.getKeyChar();
 		           if (!(Character.isDigit(c) ||
@@ -125,9 +127,9 @@ public class Ventana {
 		              }
 		         }
 		});
-		textField_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_1.setText("7");
-		textField_1.setColumns(10);
+		textFieldCantidadEcuaciones.setHorizontalAlignment(SwingConstants.RIGHT);
+		textFieldCantidadEcuaciones.setText("7");
+		textFieldCantidadEcuaciones.setColumns(10);
 		
 		JLabel lblA = new JLabel("AX=B");
 		lblA.setFont(new Font("Calibri", Font.PLAIN, 20));
@@ -135,7 +137,7 @@ public class Ventana {
 		JButton btnSiguiente = new JButton("Siguiente");
 		
 		table = new JTable();
-		int numero= Integer.parseInt(textField_1.getText());
+		int numero= Integer.parseInt(textFieldCantidadEcuaciones.getText());
 		String[] arrayDeNewColumn = new String[numero] ;
 		for(int i=0; i<numero; i++) {
 			arrayDeNewColumn[i]= "New column";
@@ -183,6 +185,15 @@ public class Ventana {
 		lblB.setFont(new Font("Calibri", Font.PLAIN, 18));
 		
 		JButton button = new JButton("Siguiente");
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int cantidadEcuaciones = Integer.parseInt(textFieldCantidadEcuaciones.getText());
+				VentanaElegirMetodo elegir = new VentanaElegirMetodo(cantidadEcuaciones);
+				elegir.main(null, cantidadEcuaciones);
+				//frmSiel.dispose();
+			}
+		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -210,7 +221,7 @@ public class Ventana {
 								.addGroup(gl_panel.createSequentialGroup()
 									.addComponent(lblN)
 									.addGap(18)
-									.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
+									.addComponent(textFieldCantidadEcuaciones, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
 								.addGroup(gl_panel.createSequentialGroup()
 									.addComponent(label, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
@@ -220,16 +231,16 @@ public class Ventana {
 							.addGap(28)
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel.createSequentialGroup()
-									.addGap(102)
+									.addGap(18)
+									.addComponent(btnChangeMatrix))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addGap(46)
 									.addComponent(lblB, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(table_1, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-									.addGap(62)
-									.addComponent(button))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addGap(18)
-									.addComponent(btnChangeMatrix)))))
-					.addGap(36))
+									.addComponent(table_1, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)))
+							.addGap(52)
+							.addComponent(button)))
+					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -239,7 +250,7 @@ public class Ventana {
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblN)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldCantidadEcuaciones, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnChangeMatrix))
 					.addGap(4)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
@@ -249,8 +260,8 @@ public class Ventana {
 						.addComponent(table_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(button)
-						.addComponent(button_1))
+						.addComponent(button_1)
+						.addComponent(button))
 					.addGap(24))
 		);
 		panel.setLayout(gl_panel);
