@@ -21,20 +21,22 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.NumberFormatter;
+
+import java.awt.Button;
+import javax.swing.JFormattedTextField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
 
 
 public class Ventana {
 
 	private JFrame frmSiel;
-	private JTextField textField;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JLabel lblNro;
-	private JLabel lblNro_1;
-	private JLabel lblSuma;
 	private JTable table;
 	private JTextField textField_1;
-	private JLabel lblHabriaQueHacer;
+	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -76,25 +78,6 @@ public class Ventana {
 		panel.setBackground(Color.PINK);
 		frmSiel.getContentPane().add(panel, BorderLayout.CENTER);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		
-		JButton btnB = new JButton("SUMAR");
-		btnB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			
-				int num1= Integer.parseInt(textField.getText());
-				int num2= Integer.parseInt(textField_2.getText());
-				int suma=num1+num2;
-				textField_3.setText(Integer.toString(suma));
-				
-			}
-		});
-		btnB.setHorizontalAlignment(SwingConstants.LEFT);
-		btnB.setFont(new Font("Sylfaen", Font.PLAIN, 11));
-		btnB.setForeground(Color.BLACK);
-		btnB.setBackground(Color.MAGENTA);
-		
 		JButton btnChangeMatrix = new JButton("Cambiar matriz");
 		btnChangeMatrix.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -105,6 +88,10 @@ public class Ventana {
 				for(int i=0; i<matrixSize; i++) {
 					arrayDeNewColumn[i]= "New column";
 				}
+				
+				String[] arrayDeNewRow = new String[1] ;
+				arrayDeNewRow[0]= "New row";
+				
 
 				table.setModel(new DefaultTableModel(new Object[matrixSize][matrixSize] ,  arrayDeNewColumn) {
 					boolean[] columnEditables = new boolean[] {
@@ -115,34 +102,37 @@ public class Ventana {
 					}
 				});
 				
+				table_1.setModel(new DefaultTableModel(new Object[matrixSize][1] ,  arrayDeNewRow) {
+					boolean[] columnEditables = new boolean[] {
+						false, true, true
+					};
+					public boolean isCellEditable(int row, int column) {
+						return columnEditables[row];
+					}
+				});
+				
 			}
 		});
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		
-		textField_3 = new JTextField();
-		textField_3.setEditable(false);
-		textField_3.setColumns(10);
-		
 		textField_1 = new JTextField();
+		textField_1.addKeyListener(new KeyAdapter() {
+		         public void keyTyped(KeyEvent e) {
+		           char c = e.getKeyChar();
+		           if (!(Character.isDigit(c) ||
+		              (c == KeyEvent.VK_BACK_SPACE) ||
+		              (c == KeyEvent.VK_DELETE))) {
+		                e.consume();
+		              }
+		         }
+		});
 		textField_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		textField_1.setText("7");
 		textField_1.setColumns(10);
 		
 		JLabel lblA = new JLabel("AX=B");
-		lblA.setFont(new Font("Segoe Print", Font.PLAIN, 15));
-		
-		lblNro = new JLabel("Nro 1");
-		
-		lblNro_1 = new JLabel("Nro 2");
-		
-		lblSuma = new JLabel("Total");
+		lblA.setFont(new Font("Calibri", Font.PLAIN, 20));
 		
 		JButton btnSiguiente = new JButton("Siguiente");
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Norma 1", "Norma 2"}));
 		
 		table = new JTable();
 		int numero= Integer.parseInt(textField_1.getText());
@@ -165,102 +155,103 @@ public class Ventana {
 		
 
 		
-		JLabel lblN = new JLabel("n:");
+		JLabel lblN = new JLabel("Cantidad de ecuaciones:");
+		lblN.setFont(new Font("Calibri", Font.PLAIN, 12));
 		
-		JLabel lblElTamaoSe = new JLabel("El tama\u00F1o se ajusta al valor de esa celda, no en ejecuci\u00F3n.  si esta en cero desaparece la matriz.\r\n");
-		lblElTamaoSe.setHorizontalAlignment(SwingConstants.CENTER);
+		table_1 = new JTable();
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+			},
+			new String[] {
+				"New column"
+			}
+		));
+		table_1.setColumnSelectionAllowed(true);
+		table_1.setCellSelectionEnabled(true);
 		
-		lblHabriaQueHacer = new JLabel("Habria que hacer que el usuario lo ingrese o que sea 3 por default. y modificable.");
-		lblHabriaQueHacer.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel label = new JLabel("A=");
+		label.setFont(new Font("Calibri", Font.PLAIN, 18));
+		
+		JLabel lblB = new JLabel("B=");
+		lblB.setFont(new Font("Calibri", Font.PLAIN, 18));
+		
+		JButton button = new JButton("Siguiente");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		
+		JButton button_1 = new JButton("Salir");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		//formattedTextField.
+		
 
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addContainerGap(153, Short.MAX_VALUE)
-									.addComponent(lblSuma, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addGap(18)
-									.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-										.addComponent(lblA, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
-										.addGroup(gl_panel.createSequentialGroup()
-											.addComponent(lblN)
-											.addPreferredGap(ComponentPlacement.UNRELATED)
-											.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-									.addPreferredGap(ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-									.addComponent(lblNro, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED)))
-							.addGap(10))
+							.addGap(19)
+							.addComponent(lblA, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panel.createSequentialGroup()
 							.addContainerGap()
-							.addComponent(lblNro_1, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)))
-					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel.createSequentialGroup()
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addContainerGap(275, Short.MAX_VALUE))
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
 								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(lblN)
+									.addGap(18)
+									.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(label, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnChangeMatrix))
+									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addComponent(table, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE)
+										.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE))))
+							.addGap(28)
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(28)
-									.addComponent(btnB)
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)))
-							.addGap(22))))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGap(27)
-					.addComponent(table, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(370, Short.MAX_VALUE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblElTamaoSe)
-					.addContainerGap(107, Short.MAX_VALUE))
-				.addGroup(gl_panel.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblHabriaQueHacer, GroupLayout.PREFERRED_SIZE, 463, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(107, Short.MAX_VALUE))
+									.addGap(102)
+									.addComponent(lblB, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(table_1, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+									.addGap(62)
+									.addComponent(button))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addGap(18)
+									.addComponent(btnChangeMatrix)))))
+					.addGap(36))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblA, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNro))
+					.addComponent(lblA, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnB)
-						.addComponent(lblNro_1)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblSuma))
+						.addComponent(lblN)
+						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnChangeMatrix))
 					.addGap(4)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblN))
-					.addGap(18)
-					.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-					.addComponent(lblElTamaoSe)
-					.addGap(18)
-					.addComponent(lblHabriaQueHacer)
-					.addGap(9)
-					.addComponent(btnChangeMatrix)
-					.addContainerGap())
+						.addComponent(label, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+						.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblB, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+						.addComponent(table_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(button)
+						.addComponent(button_1))
+					.addGap(24))
 		);
 		panel.setLayout(gl_panel);
 	}
