@@ -10,7 +10,7 @@ import EquationProcessor.Vector;
 public class VectorTest {
 
 	@Test
-	//	Vector (1, 2, 3) compared in position 0 should be false
+	// Vector (1, 2, 3) compared in position 0 should be false
 	public void testVector123v1() {
 		Vector vec = new Vector(1, 2, 3);
 
@@ -18,7 +18,7 @@ public class VectorTest {
 	}
 
 	@Test
-	//	Vector (1, 2, 3) compared in position 1 should be false
+	// Vector (1, 2, 3) compared in position 1 should be false
 	public void testVector123v2() {
 		Vector vec = new Vector(1, 2, 3);
 
@@ -26,7 +26,7 @@ public class VectorTest {
 	}
 
 	@Test
-	//	Vector (1, 2, 3) compared in position 2 should be false
+	// Vector (1, 2, 3) compared in position 2 should be false
 	public void testVector123v3() {
 		Vector vec = new Vector(1, 2, 3);
 
@@ -34,7 +34,7 @@ public class VectorTest {
 	}
 
 	@Test
-	//	Vector (1, 2, 100) compared in position 2 should be true
+	// Vector (1, 2, 100) compared in position 2 should be true
 	public void testVector12100() {
 		Vector vec = new Vector(1, 2, 100);
 
