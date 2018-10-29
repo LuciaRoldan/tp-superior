@@ -32,17 +32,15 @@ public class Ventana {
 	private JTable table;
 	private JTextField textFieldCantidadEcuaciones;
 	private JTable table_1;
+	private JTextField txtAcIraEl;
 
-
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Ventana window = new Ventana();
 					window.frmSiel.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,16 +48,12 @@ public class Ventana {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
+
 	public Ventana() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize() {
 		int cantidadEcuaciones;
 		frmSiel = new JFrame();
@@ -72,9 +66,10 @@ public class Ventana {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.PINK);
-		frmSiel.getContentPane().add(panel, BorderLayout.CENTER);
+		frmSiel.getContentPane().add(panel, BorderLayout.WEST);
 		
 		JButton btnChangeMatrix = new JButton("Cambiar matriz");
+		
 		btnChangeMatrix.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -109,7 +104,7 @@ public class Ventana {
 		         }
 		});
 		textFieldCantidadEcuaciones.setHorizontalAlignment(SwingConstants.RIGHT);
-		textFieldCantidadEcuaciones.setText("7");
+		textFieldCantidadEcuaciones.setText("3");
 		textFieldCantidadEcuaciones.setColumns(10);
 		
 		JLabel lblA = new JLabel("AX=B");
@@ -128,10 +123,6 @@ public class Ventana {
 		table_1 = new JTable();
 		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null},
-				{null},
-				{null},
-				{null},
 				{null},
 				{null},
 				{null},
@@ -156,7 +147,7 @@ public class Ventana {
 				int cantidadEcuaciones = Integer.parseInt(textFieldCantidadEcuaciones.getText());
 				VentanaElegirMetodo elegir = new VentanaElegirMetodo(cantidadEcuaciones);
 				elegir.main(null, cantidadEcuaciones);
-				//frmSiel.dispose();
+				frmSiel.dispose();
 			}
 		});
 		button.addActionListener(new ActionListener() {
@@ -167,6 +158,7 @@ public class Ventana {
 		JButton button_1 = new JButton("Salir");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frmSiel.dispose(); 
 			}
 		});
 		
@@ -182,6 +174,14 @@ public class Ventana {
 			}
 		));
 		
+		txtAcIraEl = new JTextField();  //acá iría el mje de error, por si tiene que modificar las matrices.
+//		txtAcIraEl.setText("");
+		txtAcIraEl.setBackground(new Color(255, 218, 185));
+		txtAcIraEl.setEditable(false);
+		txtAcIraEl.setColumns(10);
+		
+		JLabel lblIngreseLosValores = new JLabel("INGRESE LOS VALORES  DE LAS SIGUIENTES MATRICES:");
+		
 		//formattedTextField.
 		
 
@@ -191,10 +191,25 @@ public class Ventana {
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(19)
-							.addComponent(lblA, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE))
+							.addGap(128)
+							.addComponent(lblIngreseLosValores))
 						.addGroup(gl_panel.createSequentialGroup()
-							.addContainerGap()
+							.addGap(44)
+							.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 314, Short.MAX_VALUE)
+							.addComponent(button)))
+					.addContainerGap(68, Short.MAX_VALUE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(115)
+					.addComponent(txtAcIraEl, GroupLayout.PREFERRED_SIZE, 332, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(133, Short.MAX_VALUE))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(64)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lblA, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(gl_panel.createSequentialGroup()
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel.createSequentialGroup()
 									.addComponent(lblN)
@@ -203,10 +218,8 @@ public class Ventana {
 								.addGroup(gl_panel.createSequentialGroup()
 									.addComponent(label, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addComponent(table, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
-										.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE))))
-							.addGap(54)
+									.addComponent(table, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)))
+							.addPreferredGap(ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel.createSequentialGroup()
 									.addGap(18)
@@ -216,14 +229,14 @@ public class Ventana {
 									.addComponent(lblB, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addComponent(table_1, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)))
-							.addGap(52)
-							.addComponent(button)))
-					.addContainerGap())
+							.addGap(143))))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
+					.addComponent(lblIngreseLosValores)
+					.addGap(12)
 					.addComponent(lblA, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
@@ -240,7 +253,9 @@ public class Ventana {
 						.addGroup(gl_panel.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addPreferredGap(ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+					.addComponent(txtAcIraEl, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(button_1)
 						.addComponent(button))
