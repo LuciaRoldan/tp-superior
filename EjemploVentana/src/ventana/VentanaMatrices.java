@@ -25,7 +25,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 
-public class Ventana {
+public class VentanaMatrices {
 
 
 	protected JFrame frmSiel;
@@ -41,7 +41,7 @@ public class Ventana {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ventana window = new Ventana();
+					VentanaMatrices window = new VentanaMatrices();
 					window.frmSiel.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +53,7 @@ public class Ventana {
 	/**
 	 * Create the application.
 	 */
-	public Ventana() {
+	public VentanaMatrices() {
 		initialize();
 	}
 
@@ -109,7 +109,7 @@ public class Ventana {
 		         }
 		});
 		textFieldCantidadEcuaciones.setHorizontalAlignment(SwingConstants.RIGHT);
-		textFieldCantidadEcuaciones.setText("7");
+		textFieldCantidadEcuaciones.setText("3");
 		textFieldCantidadEcuaciones.setColumns(10);
 		
 		JLabel lblA = new JLabel("AX=B");
@@ -128,10 +128,6 @@ public class Ventana {
 		table_1 = new JTable();
 		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null},
-				{null},
-				{null},
-				{null},
 				{null},
 				{null},
 				{null},
@@ -156,7 +152,7 @@ public class Ventana {
 				int cantidadEcuaciones = Integer.parseInt(textFieldCantidadEcuaciones.getText());
 				VentanaElegirMetodo elegir = new VentanaElegirMetodo(cantidadEcuaciones);
 				elegir.main(null, cantidadEcuaciones);
-				//frmSiel.dispose();
+				frmSiel.dispose();
 			}
 		});
 		button.addActionListener(new ActionListener() {
@@ -164,7 +160,15 @@ public class Ventana {
 			}
 		});
 		
-		JButton button_1 = new JButton("Salir");
+		JButton button_1 = new JButton("Inicio");
+		button_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Inicio inicio = new Inicio();
+				inicio.main(null);
+				frmSiel.dispose();
+			}
+		});
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
