@@ -35,7 +35,7 @@ import java.awt.event.MouseEvent;
 
 public class Ventana {
 
-	private JFrame frmSiel;
+	protected JFrame frmSiel;
 	private JTable table;
 	private JTextField textFieldCantidadEcuaciones;
 	private JTable table_1;

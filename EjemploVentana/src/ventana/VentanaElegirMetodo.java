@@ -1,32 +1,27 @@
 package ventana;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JTextField;
-import java.awt.BorderLayout;
-import javax.swing.JTextPane;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
-import java.awt.Choice;
-import java.awt.Button;
-import javax.swing.JButton;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.CompoundBorder;
+import javax.swing.table.DefaultTableModel;
+
 public class VentanaElegirMetodo {
 
-	private JFrame frame;
+	protected JFrame frame;
 	private JTable tableVectorInicial;
 	private JTextField textFieldCantDecim;
 	private JTextField textFieldCotaError;
