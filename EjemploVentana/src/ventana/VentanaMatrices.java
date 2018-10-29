@@ -180,8 +180,9 @@ public class VentanaMatrices {
 			public void mouseClicked(MouseEvent e) {
 				int cantidadEcuaciones = Integer.parseInt(textFieldCantidadEcuaciones.getText());
 				Matrix matriz = inicializarMatriz(cantidadEcuaciones, table);
-				VentanaElegirMetodo elegir = new VentanaElegirMetodo(matriz);
-				elegir.main(null, matriz);
+				Vector coeficientes = inicializarVector(cantidadEcuaciones, table_1);
+				VentanaElegirMetodo elegir = new VentanaElegirMetodo(matriz, coeficientes);
+				elegir.main(null, matriz, coeficientes);
 				//frmSiel.dispose();
 			}
 		});
@@ -365,7 +366,7 @@ public class VentanaMatrices {
 			int[] array = new int[matrixSize];
 			for(int j = 0; j < matrixSize; j++) {
 				array[j] = Integer.parseInt(String.valueOf(table.getValueAt(i, j)));
-				System.out.println(String.valueOf(table.getValueAt(i, j)));
+				//System.out.println(String.valueOf(table.getValueAt(i, j)));
 			}
 			listaDeVectores.add(new Vector(array));
 		}
@@ -375,5 +376,20 @@ public class VentanaMatrices {
 		//matrix.mostrar();
 
 		return matrix;
+	}
+	
+	public Vector inicializarVector(int matrixSize, JTable table) {
+		
+		int[] array = new int[matrixSize];
+
+		for(int i = 0; i < matrixSize; i++) {
+			array[i] = Integer.parseInt(String.valueOf(table.getValueAt(i, 0)));		
+		}
+		
+		Vector vector = new Vector(array);
+		
+		vector.mostrar();
+		
+		return vector;
 	}
 }
