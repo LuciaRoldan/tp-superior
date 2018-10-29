@@ -1,17 +1,42 @@
 package ventana;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Color;
+import javax.swing.SwingConstants;
 import java.awt.Font;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JLabel;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.NumberFormatter;
+
+import EquationProcessor.Matrix;
+import EquationProcessor.Vector;
+
+import java.awt.Button;
+import javax.swing.JFormattedTextField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -28,18 +53,15 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollBar;
 import javax.swing.JFormattedTextField;
 
-
 public class VentanaMatrices {
 
-
-	protected JFrame frmSiel;
-	private JTable table;
+	JFrame frmSiel;
 	private JTextField textFieldCantidadEcuaciones;
 	private JTable table_1;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -74,7 +96,7 @@ public class VentanaMatrices {
 		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Daiana\\Desktop\\App Superior\\D_Q_NP_613031-MLA27595245923_062018-Q (1).jpg"));
 		frmSiel.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		frmSiel.setTitle("SIEL");
-		frmSiel.setBounds(100, 100, 596, 441);
+		frmSiel.setBounds(100, 100, 600, 444);
 		frmSiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -86,7 +108,7 @@ public class VentanaMatrices {
 			public void actionPerformed(ActionEvent arg0) {
 			
 				int matrixSize = Integer.parseInt(textFieldCantidadEcuaciones.getText());
-				
+								
 				String[] arrayDeNewColumn = new String[matrixSize];
 				String[] arrayDeNewRow = new String[1] ;
 				
@@ -123,25 +145,22 @@ public class VentanaMatrices {
 		         }
 		});
 		textFieldCantidadEcuaciones.setHorizontalAlignment(SwingConstants.RIGHT);
-		textFieldCantidadEcuaciones.setText("3");
+		textFieldCantidadEcuaciones.setText("7");
 		textFieldCantidadEcuaciones.setColumns(10);
 		
 		JLabel lblA = new JLabel("AX=B");
 		lblA.setFont(new Font("Calibri", Font.PLAIN, 20));
-		
-		JButton btnSiguiente = new JButton("Siguiente");
-		int numero= Integer.parseInt(textFieldCantidadEcuaciones.getText());
-		String[] arrayDeNewColumn = new String[numero] ;
-		for(int i=0; i<numero; i++) {
-			arrayDeNewColumn[i]= "New column";
-		}
-		
+				
 		JLabel lblN = new JLabel("Cantidad de ecuaciones:");
 		lblN.setFont(new Font("Calibri", Font.PLAIN, 12));
 		
 		table_1 = new JTable();
 		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
+				{null},
+				{null},
+				{null},
+				{null},
 				{null},
 				{null},
 				{null},
@@ -164,9 +183,10 @@ public class VentanaMatrices {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int cantidadEcuaciones = Integer.parseInt(textFieldCantidadEcuaciones.getText());
-				VentanaElegirMetodo elegir = new VentanaElegirMetodo(cantidadEcuaciones);
-				elegir.main(null, cantidadEcuaciones);
-				frmSiel.dispose();
+				Matrix matriz = inicializarMatriz(cantidadEcuaciones, table);
+				VentanaElegirMetodo elegir = new VentanaElegirMetodo(matriz);
+				elegir.main(null, matriz);
+				//frmSiel.dispose();
 			}
 		});
 		button.addActionListener(new ActionListener() {
@@ -174,15 +194,7 @@ public class VentanaMatrices {
 			}
 		});
 		
-		JButton button_1 = new JButton("Inicio");
-		button_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Inicio inicio = new Inicio();
-				inicio.main(null);
-				frmSiel.dispose();
-			}
-		});
+		JButton button_1 = new JButton("Salir");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -345,4 +357,24 @@ public class VentanaMatrices {
 		);
 		panel.setLayout(gl_panel);
 	}
+
+	public Matrix inicializarMatriz(int matrixSize, JTable table) {
+		
+		ArrayList<Vector> listaDeVectores = new ArrayList<Vector>();
+		
+		for(int i = 0; i < matrixSize; i++) {
+			int[] array = new int[matrixSize];
+			for(int j = 0; j < matrixSize; j++) {
+				array[j] = Integer.parseInt(String.valueOf(table.getValueAt(i, j)));
+				System.out.println(String.valueOf(table.getValueAt(i, j)));
+			}
+			listaDeVectores.add(new Vector(array));
+		}
+		
+		Matrix matrix = new Matrix(matrixSize, matrixSize, listaDeVectores);
+		
+		//matrix.mostrar();
+
+		return matrix;
 	}
+}
