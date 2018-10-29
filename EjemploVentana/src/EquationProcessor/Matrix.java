@@ -45,4 +45,12 @@ public class Matrix {
 	public boolean columnDominant() {
 		return false;
 	}
+	
+	public int getMatrixSize() {
+		return this.m;
+	}
+	
+	public void mostrar() {
+		this.vectors.stream().forEach(v -> v.mostrar());
+	}
 }

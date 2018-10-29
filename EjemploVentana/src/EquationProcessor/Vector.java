@@ -15,7 +15,7 @@ public class Vector {
 	public List<Integer> getValues() {
 		return values;
 	}
-
+	
 	public int valueAt(int i) {
 		return values.get(i);
 	}
@@ -29,5 +29,11 @@ public class Vector {
 		}
 
 		return sum < Math.abs(max);
+	}
+
+	public void mostrar() {
+		for (int i = 0; i < values.size(); i++) {
+			System.out.println("vector " + this.valueAt(i));
+		}
 	}
 }

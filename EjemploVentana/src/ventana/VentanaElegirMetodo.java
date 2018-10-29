@@ -14,6 +14,11 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import EquationProcessor.Matrix;
+
+import javax.swing.border.BevelBorder;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.CompoundBorder;
@@ -29,11 +34,11 @@ public class VentanaElegirMetodo {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args, int cantidadEcuaciones) {
+	public static void main(String[] args, Matrix matriz) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaElegirMetodo window = new VentanaElegirMetodo(cantidadEcuaciones);
+					VentanaElegirMetodo window = new VentanaElegirMetodo(matriz);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,15 +50,16 @@ public class VentanaElegirMetodo {
 	/**
 	 * Create the application.
 	 */
-	public VentanaElegirMetodo(int cantidadFilas) {
-		initialize(cantidadFilas);
+	public VentanaElegirMetodo(Matrix matriz) {
+		initialize(matriz);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(int cant) {
-		int cantidadFilas = cant;
+	private void initialize(Matrix matriz) {
+		Matrix matrizz = matriz;
+		int cantidadFilas = matrizz.getMatrixSize();
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.PINK);
 		frame.setBounds(100, 100, 600, 444);
