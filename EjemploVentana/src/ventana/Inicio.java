@@ -57,7 +57,7 @@ public class Inicio {
 		JButton btnComenzar = new JButton("Comenzar!");
 		btnComenzar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Ventana ventanaValores= new Ventana();
+				VentanaMatrices ventanaValores= new VentanaMatrices();
 				ventanaValores.frmSiel.setVisible(true);
 				frmSiel.dispose();
 			}
