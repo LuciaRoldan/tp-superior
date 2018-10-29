@@ -155,6 +155,17 @@ public class VentanaMatrices {
 		lblN.setFont(new Font("Calibri", Font.PLAIN, 12));
 		
 		table_1 = new JTable();
+		table_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+		           if(textFieldCantidadEcuaciones.getText().length()<1) {
+						if (!(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_PERIOD || c == KeyEvent.VK_MINUS)) {
+							e.consume();	
+						}
+		           } 
+			}
+		});
 		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null},
@@ -198,6 +209,18 @@ public class VentanaMatrices {
 		});
 		
 		table = new JTable();
+		table.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+		           System.out.println(textFieldCantidadEcuaciones.getText().length());
+		           if(textFieldCantidadEcuaciones.getText().length()<4) {
+						if (!(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_PERIOD || c == KeyEvent.VK_MINUS)) {
+							e.consume();	
+						}
+		           }
+			}
+		});
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null},
@@ -206,8 +229,7 @@ public class VentanaMatrices {
 			},
 			new String[] {
 				"New column", "New column", "New column"
-			}
-		));
+		}));
 		
 		JButton button_2 = new JButton("Calcular normas");
 		button_2.addActionListener(new ActionListener() {
