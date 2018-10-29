@@ -17,6 +17,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import EquationProcessor.Matrix;
+import EquationProcessor.Vector;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.JTextField;
@@ -34,11 +35,11 @@ public class VentanaElegirMetodo {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args, Matrix matriz) {
+	public static void main(String[] args, Matrix matriz, Vector coeficientes) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaElegirMetodo window = new VentanaElegirMetodo(matriz);
+					VentanaElegirMetodo window = new VentanaElegirMetodo(matriz, coeficientes);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,16 +51,21 @@ public class VentanaElegirMetodo {
 	/**
 	 * Create the application.
 	 */
-	public VentanaElegirMetodo(Matrix matriz) {
-		initialize(matriz);
+	public VentanaElegirMetodo(Matrix matriz, Vector coeficientes) {
+		initialize(matriz, coeficientes);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(Matrix matriz) {
-		Matrix matrizz = matriz;
-		int cantidadFilas = matrizz.getMatrixSize();
+	private void initialize(Matrix mat, Vector coefs) {
+		Matrix matriz = mat;
+		Vector coeficientes = coefs;
+		System.out.print("Vector: ");
+		coeficientes.mostrar();
+		System.out.print("Matriz: ");
+		matriz.mostrar();
+		int cantidadFilas = matriz.getMatrixSize();
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.PINK);
 		frame.setBounds(100, 100, 600, 444);
