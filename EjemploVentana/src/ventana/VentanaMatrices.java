@@ -145,7 +145,7 @@ public class VentanaMatrices {
 		         }
 		});
 		textFieldCantidadEcuaciones.setHorizontalAlignment(SwingConstants.RIGHT);
-		textFieldCantidadEcuaciones.setText("7");
+		textFieldCantidadEcuaciones.setText("3");
 		textFieldCantidadEcuaciones.setColumns(10);
 		
 		JLabel lblA = new JLabel("AX=B");
@@ -157,10 +157,6 @@ public class VentanaMatrices {
 		table_1 = new JTable();
 		table_1.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null},
-				{null},
-				{null},
-				{null},
 				{null},
 				{null},
 				{null},
