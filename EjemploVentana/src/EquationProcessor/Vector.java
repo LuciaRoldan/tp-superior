@@ -39,6 +39,6 @@ public class Vector {
 	}
 	
 	public int sumarFila() {
-		return this.values.stream().mapToInt(Integer::intValue).sum();
+		return this.values.stream().mapToInt(x -> Math.abs(Integer.valueOf(x))).sum();
 	}
 }
