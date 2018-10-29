@@ -40,4 +40,10 @@ public class VectorTest {
 
 		Assert.assertTrue(vec.compare(2));
 	}
+	
+	@Test
+	public void testSumarFila() {
+		Vector vec = new Vector(1, 9);
+		Assert.assertEquals(10, vec.sumarFila());
+	}
 }

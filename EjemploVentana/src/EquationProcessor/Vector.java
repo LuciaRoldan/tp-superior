@@ -2,6 +2,7 @@ package EquationProcessor;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Vector {
 	private List<Integer> values = new ArrayList<Integer>();
@@ -35,5 +36,9 @@ public class Vector {
 		for (int i = 0; i < values.size(); i++) {
 			System.out.println("vector " + this.valueAt(i));
 		}
+	}
+	
+	public int sumarFila() {
+		return this.values.stream().mapToInt(Integer::intValue).sum();
 	}
 }

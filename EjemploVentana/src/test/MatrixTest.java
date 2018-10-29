@@ -19,5 +19,11 @@ public class MatrixTest {
 	public void test() {
 		Assert.assertFalse(m.rowDominant());
 	}
+	
+	@Test
+	public void testNorma1() {
+		Assert.assertEquals(24, m.norma1());
+	}
+	
 
 }

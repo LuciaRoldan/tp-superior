@@ -1,6 +1,8 @@
 package EquationProcessor;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.stream.Collectors;
 
 public class Matrix {
 	private int n;
@@ -52,5 +54,9 @@ public class Matrix {
 	
 	public void mostrar() {
 		this.vectors.stream().forEach(v -> v.mostrar());
+	}
+	
+	public int norma1() {
+		return Collections.max(this.vectors.stream().map(v -> v.sumarFila()).collect(Collectors.toList()));
 	}
 }
