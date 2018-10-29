@@ -1,44 +1,38 @@
 package ventana;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import java.awt.Color;
-import javax.swing.SwingConstants;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JLabel;
 import java.awt.Toolkit;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.text.NumberFormatter;
-
-import java.awt.Button;
-import javax.swing.JFormattedTextField;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.InputMethodListener;
-import java.awt.event.InputMethodEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+
 
 public class Ventana {
+
 
 	protected JFrame frmSiel;
 	private JTable table;
 	private JTextField textFieldCantidadEcuaciones;
 	private JTable table_1;
+
 
 	/**
 	 * Launch the application.
@@ -85,33 +79,20 @@ public class Ventana {
 			public void actionPerformed(ActionEvent arg0) {
 			
 				int matrixSize = Integer.parseInt(textFieldCantidadEcuaciones.getText());
-
-				String[] arrayDeNewColumn = new String[matrixSize] ;
+				
+				String[] arrayDeNewColumn = new String[matrixSize];
+				String[] arrayDeNewRow = new String[1] ;
+				
+				arrayDeNewRow[0]= "New row";
+				
 				for(int i=0; i<matrixSize; i++) {
 					arrayDeNewColumn[i]= "New column";
 				}
 				
-				String[] arrayDeNewRow = new String[1] ;
-				arrayDeNewRow[0]= "New row";
+				table.setModel(new DefaultTableModel(
+					new Object[matrixSize][matrixSize], arrayDeNewColumn));
 				
-
-				table.setModel(new DefaultTableModel(new Object[matrixSize][matrixSize] ,  arrayDeNewColumn) {
-					boolean[] columnEditables = new boolean[] {
-						false, true, true
-					};
-					public boolean isCellEditable(int row, int column) {
-						return columnEditables[column];
-					}
-				});
-				
-				table_1.setModel(new DefaultTableModel(new Object[matrixSize][1] ,  arrayDeNewRow) {
-					boolean[] columnEditables = new boolean[] {
-						false, true, true
-					};
-					public boolean isCellEditable(int row, int column) {
-						return columnEditables[row];
-					}
-				});
+				table_1.setModel(new DefaultTableModel(new Object[matrixSize][1],  arrayDeNewRow));
 				
 			}
 		});
@@ -135,27 +116,11 @@ public class Ventana {
 		lblA.setFont(new Font("Calibri", Font.PLAIN, 20));
 		
 		JButton btnSiguiente = new JButton("Siguiente");
-		
-		table = new JTable();
 		int numero= Integer.parseInt(textFieldCantidadEcuaciones.getText());
 		String[] arrayDeNewColumn = new String[numero] ;
 		for(int i=0; i<numero; i++) {
 			arrayDeNewColumn[i]= "New column";
 		}
-		
-		
-		table.setColumnSelectionAllowed(true);
-		table.setCellSelectionEnabled(true);
-		table.setModel(new DefaultTableModel(new Object[numero][numero] ,  arrayDeNewColumn) {
-			boolean[] columnEditables = new boolean[] {
-				false, true, true
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		
-
 		
 		JLabel lblN = new JLabel("Cantidad de ecuaciones:");
 		lblN.setFont(new Font("Calibri", Font.PLAIN, 12));
@@ -204,6 +169,19 @@ public class Ventana {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+			},
+			new String[] {
+				"New column", "New column", "New column"
+			}
+		));
+		
 		//formattedTextField.
 		
 
@@ -226,9 +204,9 @@ public class Ventana {
 									.addComponent(label, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-										.addComponent(table, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE)
+										.addComponent(table, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE)
 										.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE))))
-							.addGap(28)
+							.addGap(54)
 							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panel.createSequentialGroup()
 									.addGap(18)
@@ -252,12 +230,16 @@ public class Ventana {
 						.addComponent(lblN)
 						.addComponent(textFieldCantidadEcuaciones, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnChangeMatrix))
-					.addGap(4)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-						.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblB, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-						.addComponent(table_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(4)
+							.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+								.addComponent(label, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblB, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+								.addComponent(table_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(button_1)
