@@ -211,6 +211,9 @@ public class VentanaMatrices {
 		JButton button_2 = new JButton("Calcular normas");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				int cantidadEcuaciones = Integer.parseInt(textFieldCantidadEcuaciones.getText());
+				Matrix matriz = inicializarMatriz(cantidadEcuaciones, table);
+				textField.setText(String.valueOf(matriz.norma1()));
 			}
 		});
 		
