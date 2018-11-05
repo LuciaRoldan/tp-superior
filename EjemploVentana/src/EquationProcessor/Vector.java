@@ -59,7 +59,31 @@ public class Vector {
 		return new Vector(values);
 	}
 	
+	public Vector plusVector(Vector vector) {
+		ArrayList<Double> values = new ArrayList<Double>();
+		for (int i = 0; i < this.values.size(); i++) {
+			values.add(this.valueAt(i) + vector.valueAt(i));
+		}
+		
+		return new Vector(values);
+	}
+	
 	public void agregarNumerito(double numerito) {
 		values.add(numerito);
+	}
+
+	public Vector minus(Vector vector) {
+		ArrayList<Double> values = new ArrayList<Double>();
+		for (int i = 0; i < this.values.size(); i++) {
+			values.add(this.valueAt(i) - vector.valueAt(i));
+		}
+		
+		return new Vector(values);
+		
+	}
+
+	public double normaInfinito() {
+		// TODO Auto-generated method stub
+		return this.values.stream().mapToDouble(value -> Math.abs(value)).max().getAsDouble();
 	}
 }
