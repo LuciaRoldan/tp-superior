@@ -23,6 +23,10 @@ public class Matrix {
 			this.vectors.add(vectors[i]);
 		}
 	}
+	
+	public ArrayList<Vector> getVectors(){
+		return this.vectors;
+	}
 
 	public boolean isDiagonallyDominant() {
 		return this.rowDominant() || this.columnDominant();
@@ -56,7 +60,45 @@ public class Matrix {
 		this.vectors.stream().forEach(v -> v.mostrar());
 	}
 	
-	public int norma1() {
+	public int normaInfinito() {
 		return Collections.max(this.vectors.stream().map(v -> v.sumarFila()).collect(Collectors.toList()));
+	}
+	
+	public int norma1() {
+		//Norma 1 es la normalInfinito de la transpuesta
+		return this.transposeMatrix().normaInfinito();
+	}
+	
+	public Matrix transposeMatrix() {
+		
+		ArrayList<Vector> vectores = new ArrayList<Vector>();
+		
+		for (int i = 0; i < this.m; i++) {
+			int j = i; //Por alguna razon no me deja con i
+			Vector columnVector = new Vector(this.vectors.stream().mapToInt(v -> v.valueAt(j)).toArray());
+			vectores.add(columnVector);
+		} 
+				
+		return new Matrix(this.m, this.m, vectores);
+	}
+	
+	public Matrix multiplyMatrix(Matrix matriz) {
+		
+		Matrix auxMatrix = matriz.transposeMatrix();
+		
+		ArrayList<Vector> vectores = new ArrayList<Vector>();
+		
+		for(int i = 0; i < this.m; i++) {
+			int[] coeficientes = new int[this.m];
+			Vector fila = this.getVectors().get(i);
+			for (int j = 0; j < this.m; j++) {
+				Vector columna = auxMatrix.getVectors().get(j);
+				coeficientes[j] = fila.multiplyVector(columna).sumarFila();
+			}
+			
+			vectores.add(new Vector(coeficientes));			
+		}
+		
+		return new Matrix(this.m, this.m, vectores);
 	}
 }

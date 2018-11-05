@@ -22,8 +22,26 @@ public class MatrixTest {
 	
 	@Test
 	public void testNorma1() {
-		Assert.assertEquals(24, m.norma1());
+		Assert.assertEquals(3 + 6 + 9, m.norma1());
 	}
 	
-
+	@Test
+	public void testNormaInfinito() {
+		Assert.assertEquals(7 + 8 + 9, m.normaInfinito());
+	}
+	
+	
+	@Test
+	public void testTransposeMatrix() {
+		Matrix transposedM = m.transposeMatrix();
+		Assert.assertEquals(new Vector(1,4,7).sumarFila(), transposedM.getVectors().get(0).sumarFila());
+		Assert.assertEquals(new Vector(2,5,8).sumarFila(), transposedM.getVectors().get(1).sumarFila());
+		Assert.assertEquals(new Vector(3,6,9).sumarFila(), transposedM.getVectors().get(2).sumarFila());
+	}
+	
+	@Test
+	public void testMultiplyMatrix() {
+		Matrix multipliedM = m.multiplyMatrix(m);
+		Assert.assertEquals(new Vector(30,36,42).sumarFila(), multipliedM.getVectors().get(0).sumarFila());
+	}
 }

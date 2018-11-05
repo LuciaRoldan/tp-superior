@@ -12,6 +12,10 @@ public class Vector {
 			this.values.add(values[i]);
 		}
 	}
+	
+	public Vector(ArrayList<Integer> values) {
+		this.values = values;
+	}
 
 	public List<Integer> getValues() {
 		return values;
@@ -40,5 +44,14 @@ public class Vector {
 	
 	public int sumarFila() {
 		return this.values.stream().mapToInt(x -> Math.abs(Integer.valueOf(x))).sum();
+	}
+	
+	public Vector multiplyVector(Vector vector) {
+		ArrayList<Integer> values = new ArrayList<Integer>();
+		for (int i = 0; i < this.values.size(); i++) {
+			values.add(this.valueAt(i) * vector.valueAt(i));
+		}
+		
+		return new Vector(values);
 	}
 }

@@ -237,6 +237,7 @@ public class VentanaMatrices {
 				int cantidadEcuaciones = Integer.parseInt(textFieldCantidadEcuaciones.getText());
 				Matrix matriz = inicializarMatriz(cantidadEcuaciones, table);
 				textField.setText(String.valueOf(matriz.norma1()));
+				textField_2.setText(String.valueOf(matriz.normaInfinito()));
 			}
 		});
 		

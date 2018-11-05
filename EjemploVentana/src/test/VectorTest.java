@@ -46,4 +46,12 @@ public class VectorTest {
 		Vector vec = new Vector(1, 9);
 		Assert.assertEquals(10, vec.sumarFila());
 	}
+	
+	@Test
+	public void multiplyVector() {
+		Vector vec1 = new Vector(1, 2, 3);
+		Vector vec2 = new Vector(4, 5, 6);
+		Assert.assertEquals(4 + 10 + 18, vec1.multiplyVector(vec2).sumarFila());
+	}
+	
 }
