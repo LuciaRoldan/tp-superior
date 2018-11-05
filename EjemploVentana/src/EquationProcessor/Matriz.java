@@ -165,7 +165,7 @@ public class Matriz {
 		return new Matriz(this.m, this.m, vectores);
 	}
 	
-	public Matriz multiply(int value) {
+	public Matriz multiply(double value) {
 		ArrayList<Vector> vectores = new ArrayList<Vector>();
 		
 		for(int i = 0; i < this.m; i++) {
@@ -244,5 +244,9 @@ public class Matriz {
 		}
 		
 		return coeficientes;
+	}
+
+	public Matriz minus(Matriz matrix) {
+		return this.plus(matrix.multiply(-1));
 	}
 }

@@ -124,7 +124,21 @@ public class MatrixTest {
 	public void testJacobi() {
 		Jacobi aJacobi = new Jacobi();
 		aJacobi.jacobiIterations(m3, v9, new Vector(0,0,0), 0.001);
-		//Assert.assertEquals(new Vector(30,36,42).sumarFila(), multipliedM.getVectors().get(0).sumarFila(), 0);
+	}
+	
+	@Test
+	public void testGaussSeidel3X3() {
+		GaussSeidel aGaussSeidel = new GaussSeidel();
+		aGaussSeidel.gaussSeidelIterations(m3, v9, new Vector(0,0,0), 0.001);
+	}
+	
+	@Test
+	public void testGaussSeidel2X2() {
+		GaussSeidel aGaussSeidel = new GaussSeidel();
+		
+		Matriz matriz2x2 = new Matriz(2, 2, new Vector(3, 2), new Vector(2, 5)); 
+		
+		aGaussSeidel.gaussSeidelIterations(matriz2x2, new Vector(7,1), new Vector(0,0), 0.001);
 	}
 	
 }
