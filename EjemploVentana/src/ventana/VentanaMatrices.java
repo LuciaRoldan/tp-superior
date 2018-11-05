@@ -100,7 +100,7 @@ public class VentanaMatrices {
 		frmSiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(Color.PINK);
+		panel.setBackground(new Color(255, 204, 204));
 		frmSiel.getContentPane().add(panel, BorderLayout.CENTER);
 		
 		JButton btnChangeMatrix = new JButton("Cambiar matriz");
@@ -217,6 +217,9 @@ public class VentanaMatrices {
 		JButton button_1 = new JButton("Inicio");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Inicio elegir = new Inicio();
+				elegir.main(null);
+				frmSiel.dispose();
 			}
 		});
 		

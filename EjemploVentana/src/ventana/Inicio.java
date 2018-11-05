@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.UIManager;
+import java.awt.Font;
 
 public class Inicio {
 
@@ -47,6 +49,7 @@ public class Inicio {
 		lblNewLabel.setIcon(new ImageIcon(Inicio.class.getResource("/imagenes/Cubo grande.jpg")));
 		
 		JLabel lblBienvenidosASiel = new JLabel("BIENVENIDOS A SIEL!");
+		lblBienvenidosASiel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		JLabel lblNewLabel_1 = new JLabel("Resoluci\u00F3n de ecuaciones diferenciales");
 		
@@ -68,36 +71,36 @@ public class Inicio {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(169)
-							.addComponent(lblBienvenidosASiel))
-						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(113)
-							.addComponent(lblNewLabel)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnComenzar))
+							.addComponent(lblNewLabel))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(135)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblPorElMtodo)
-								.addComponent(lblNewLabel_1))))
-					.addContainerGap(37, Short.MAX_VALUE))
+								.addComponent(lblNewLabel_1)))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(144)
+							.addComponent(lblBienvenidosASiel)))
+					.addContainerGap(170, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(382, Short.MAX_VALUE)
+					.addComponent(btnComenzar)
+					.addGap(25))
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(6)
+					.addGap(13)
 					.addComponent(lblBienvenidosASiel)
-					.addGap(18)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(lblNewLabel_1)
 					.addGap(11)
 					.addComponent(lblPorElMtodo)
 					.addGap(18)
 					.addComponent(lblNewLabel)
-					.addContainerGap(64, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(369, Short.MAX_VALUE)
+					.addGap(9)
 					.addComponent(btnComenzar)
-					.addGap(49))
+					.addContainerGap(25, Short.MAX_VALUE))
 		);
 		frmSiel.getContentPane().setLayout(groupLayout);
 	}
