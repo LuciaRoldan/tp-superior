@@ -72,6 +72,12 @@ public class Matriz {
 		return this.transposeMatrix().normaInfinito();
 	}
 	
+	public double norma2() {
+		Algebra alg = new Algebra();
+		DoubleMatrix2D aMatrix = new DenseDoubleMatrix2D(this.getCoeficientes());
+		return alg.norm2(aMatrix);
+	}
+	
 	public Matriz transposeMatrix() {
 		
 		ArrayList<Vector> vectores = new ArrayList<Vector>();

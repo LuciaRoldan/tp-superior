@@ -236,8 +236,10 @@ public class VentanaMatrices {
 			public void actionPerformed(ActionEvent arg0) {
 				int cantidadEcuaciones = Integer.parseInt(textFieldCantidadEcuaciones.getText());
 				Matriz matriz = inicializarMatriz(cantidadEcuaciones, table);
-				textField.setText(String.valueOf(matriz.norma1()));
-				textField_2.setText(String.valueOf(matriz.normaInfinito()));
+				textField.setText(String.format("%.2f", matriz.norma1()));
+				textField_1.setText(String.format("%.2f", matriz.norma2()));
+				textField_2.setText(String.format("%.2f", matriz.normaInfinito()));
+				
 			}
 		});
 		
@@ -395,8 +397,6 @@ public class VentanaMatrices {
 		}
 		
 		Matriz matrix = new Matriz(matrixSize, matrixSize, listaDeVectores);
-		
-		//matrix.mostrar();
 
 		return matrix;
 	}

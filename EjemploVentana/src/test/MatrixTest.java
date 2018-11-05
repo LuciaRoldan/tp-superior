@@ -33,6 +33,10 @@ public class MatrixTest {
 		Assert.assertEquals(7 + 8 + 9, m.normaInfinito(), 0);
 	}
 	
+	@Test
+	public void testNorma2() {
+		Assert.assertEquals(6, m2.norma2(), 0.01);
+	}
 	
 	@Test
 	public void testTransposeMatrix() {
@@ -89,5 +93,10 @@ public class MatrixTest {
 		Matriz inverseMatrix = m2.inverse();
 		inverseMatrix.mostrar();
 		Assert.assertEquals(new Vector(-5.0/18, 1.0/18, 7.0/18).sumarFila(), inverseMatrix.getVectors().get(0).sumarFila(), 0.01);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testInverseMatrixFailure() {
+		Matriz inverseMatrix = m.inverse();
 	}
 }
