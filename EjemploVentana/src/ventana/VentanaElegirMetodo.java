@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import EquationProcessor.Matrix;
+import EquationProcessor.Matriz;
 import EquationProcessor.Vector;
 
 import javax.swing.border.BevelBorder;
@@ -35,7 +35,7 @@ public class VentanaElegirMetodo {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args, Matrix matriz, Vector coeficientes) {
+	public static void main(String[] args, Matriz matriz, Vector coeficientes) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -51,15 +51,15 @@ public class VentanaElegirMetodo {
 	/**
 	 * Create the application.
 	 */
-	public VentanaElegirMetodo(Matrix matriz, Vector coeficientes) {
+	public VentanaElegirMetodo(Matriz matriz, Vector coeficientes) {
 		initialize(matriz, coeficientes);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(Matrix mat, Vector coefs) {
-		Matrix matriz = mat;
+	private void initialize(Matriz mat, Vector coefs) {
+		Matriz matriz = mat;
 		Vector coeficientes = coefs;
 		System.out.print("Vector: ");
 		coeficientes.mostrar();

@@ -24,7 +24,7 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.NumberFormatter;
 
-import EquationProcessor.Matrix;
+import EquationProcessor.Matriz;
 import EquationProcessor.Vector;
 
 import java.awt.Button;
@@ -190,7 +190,7 @@ public class VentanaMatrices {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int cantidadEcuaciones = Integer.parseInt(textFieldCantidadEcuaciones.getText());
-				Matrix matriz = inicializarMatriz(cantidadEcuaciones, table);
+				Matriz matriz = inicializarMatriz(cantidadEcuaciones, table);
 				Vector coeficientes = inicializarVector(cantidadEcuaciones, table_1);
 				VentanaElegirMetodo elegir = new VentanaElegirMetodo(matriz, coeficientes);
 				elegir.main(null, matriz, coeficientes);
@@ -235,7 +235,7 @@ public class VentanaMatrices {
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int cantidadEcuaciones = Integer.parseInt(textFieldCantidadEcuaciones.getText());
-				Matrix matriz = inicializarMatriz(cantidadEcuaciones, table);
+				Matriz matriz = inicializarMatriz(cantidadEcuaciones, table);
 				textField.setText(String.valueOf(matriz.norma1()));
 				textField_2.setText(String.valueOf(matriz.normaInfinito()));
 			}
@@ -381,12 +381,12 @@ public class VentanaMatrices {
 		panel.setLayout(gl_panel);
 	}
 
-	public Matrix inicializarMatriz(int matrixSize, JTable table) {
+	public Matriz inicializarMatriz(int matrixSize, JTable table) {
 		
 		ArrayList<Vector> listaDeVectores = new ArrayList<Vector>();
 		
 		for(int i = 0; i < matrixSize; i++) {
-			int[] array = new int[matrixSize];
+			double[] array = new double[matrixSize];
 			for(int j = 0; j < matrixSize; j++) {
 				array[j] = Integer.parseInt(String.valueOf(table.getValueAt(i, j)));
 				//System.out.println(String.valueOf(table.getValueAt(i, j)));
@@ -394,7 +394,7 @@ public class VentanaMatrices {
 			listaDeVectores.add(new Vector(array));
 		}
 		
-		Matrix matrix = new Matrix(matrixSize, matrixSize, listaDeVectores);
+		Matriz matrix = new Matriz(matrixSize, matrixSize, listaDeVectores);
 		
 		//matrix.mostrar();
 
@@ -403,10 +403,10 @@ public class VentanaMatrices {
 	
 	public Vector inicializarVector(int matrixSize, JTable table) {
 		
-		int[] array = new int[matrixSize];
+		double[] array = new double[matrixSize];
 
 		for(int i = 0; i < matrixSize; i++) {
-			array[i] = Integer.parseInt(String.valueOf(table.getValueAt(i, 0)));		
+			array[i] = Double.parseDouble(String.valueOf(table.getValueAt(i, 0)));		
 		}
 		
 		Vector vector = new Vector(array);

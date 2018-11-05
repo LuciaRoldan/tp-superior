@@ -5,29 +5,29 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Vector {
-	private List<Integer> values = new ArrayList<Integer>();
+	private List<Double> values = new ArrayList<Double>();
 
-	public Vector(int... values) {
+	public Vector(double... values) {
 		for (int i = 0; i < values.length; i++) {
 			this.values.add(values[i]);
 		}
 	}
 	
-	public Vector(ArrayList<Integer> values) {
+	public Vector(ArrayList<Double> values) {
 		this.values = values;
 	}
 
-	public List<Integer> getValues() {
+	public List<Double> getValues() {
 		return values;
 	}
 	
-	public int valueAt(int i) {
+	public double valueAt(int i) {
 		return values.get(i);
 	}
 
 	public boolean compare(int position) {
-		int max = values.get(position);
-		int sum = 0 - values.get(position);
+		double max = values.get(position);
+		double sum = 0 - values.get(position);
 
 		for (int i = 0; i < values.size(); i++) {
 			sum += values.get(i);
@@ -42,12 +42,16 @@ public class Vector {
 		}
 	}
 	
-	public int sumarFila() {
-		return this.values.stream().mapToInt(x -> Math.abs(Integer.valueOf(x))).sum();
+	public double sumarFila() {
+		return this.values.stream().mapToDouble(x -> Double.valueOf(x)).sum();
+	}
+	
+	public double sumarFilaAbs() {
+		return this.values.stream().mapToDouble(x -> Math.abs(Double.valueOf(x))).sum();
 	}
 	
 	public Vector multiplyVector(Vector vector) {
-		ArrayList<Integer> values = new ArrayList<Integer>();
+		ArrayList<Double> values = new ArrayList<Double>();
 		for (int i = 0; i < this.values.size(); i++) {
 			values.add(this.valueAt(i) * vector.valueAt(i));
 		}

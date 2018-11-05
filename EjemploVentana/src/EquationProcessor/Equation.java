@@ -4,19 +4,19 @@ public class Equation {
 	private int decimals;
 	private double error;
 
-	private Matrix coefficients;
-	private Matrix variables;
-	private Matrix independents;
+	private Matriz coefficients;
+	private Matriz variables;
+	private Matriz independents;
 
-	public Matrix getCoefficients() {
+	public Matriz getCoefficients() {
 		return coefficients;
 	}
 
-	public Matrix getVariables() {
+	public Matriz getVariables() {
 		return variables;
 	}
 
-	public Matrix getIndependents() {
+	public Matriz getIndependents() {
 		return independents;
 	}
 

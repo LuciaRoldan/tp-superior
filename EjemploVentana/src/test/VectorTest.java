@@ -44,14 +44,14 @@ public class VectorTest {
 	@Test
 	public void testSumarFila() {
 		Vector vec = new Vector(1, 9);
-		Assert.assertEquals(10, vec.sumarFila());
+		Assert.assertEquals(10, vec.sumarFilaAbs(), 0);
 	}
 	
 	@Test
 	public void multiplyVector() {
 		Vector vec1 = new Vector(1, 2, 3);
 		Vector vec2 = new Vector(4, 5, 6);
-		Assert.assertEquals(4 + 10 + 18, vec1.multiplyVector(vec2).sumarFila());
+		Assert.assertEquals(4 + 10 + 18, vec1.multiplyVector(vec2).sumarFilaAbs(), 0);
 	}
 	
 }
