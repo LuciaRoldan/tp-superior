@@ -6,7 +6,7 @@ public class Result {
 	
 	ArrayList<Vector> coeficientes = new ArrayList<Vector>();
 	ArrayList<Vector> errores = new ArrayList<Vector>();
-	double inifinito;
+	Vector infinito = new Vector();
 	
 	
 	public ArrayList<Vector> getCoeficientes(){
@@ -25,12 +25,12 @@ public class Result {
 		this.errores = vector;
 	}
 	
-	public double getInfinito() {
-		return this.inifinito;
+	public Vector getInfinito() {
+		return this.infinito;
 	}
 	
-	public void setInfinito(double doub) {
-		this.inifinito = doub;
+	public void setInfinito(Vector vector) {
+		this.infinito = vector;
 	}
 	
 	public void agregarResultado(Vector vectorResultado) {
@@ -39,6 +39,10 @@ public class Result {
 	
 	public void agregarError(Vector vectorError) {
 		this.errores.add(vectorError);
+	}
+	
+	public void agregarInfinito(double doub) {
+		this.infinito.agregarNumerito(doub);
 	}
 
 }

@@ -58,4 +58,8 @@ public class Vector {
 		
 		return new Vector(values);
 	}
+	
+	public void agregarNumerito(double numerito) {
+		values.add(numerito);
+	}
 }
