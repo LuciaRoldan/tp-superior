@@ -13,9 +13,16 @@ public class MatrixTest {
 	Vector v3 = new Vector(7, 8, 9);
 	Vector v4 = new Vector(2, 3, 1);
 	Vector v5 = new Vector(3, 1, 2);	
+	
+	Vector v6 = new Vector(3, -1, -1);
+	Vector v7 = new Vector(-1, 3, 1);
+	Vector v8 = new Vector(2, 1, 4);
+	
+	Vector v9 = new Vector(1, 3, 7);
 
 	Matriz m = new Matriz(3, 3, v1, v2, v3);
 	Matriz m2 = new Matriz(3, 3, v1, v4, v5);
+	Matriz m3 = new Matriz(3,3, v6, v7, v8);
 
 	@Test
 	// m should not be row diagonals
@@ -39,11 +46,25 @@ public class MatrixTest {
 	}
 	
 	@Test
+	public void testNormaInfinitoVector() {
+		Assert.assertEquals(6, new Vector(-1, 2, 3, -4, 5, -6).normaInfinito(), 0);
+	}
+	
+	
+	@Test
 	public void testTransposeMatrix() {
 		Matriz transposedM = m.transposeMatrix();
 		Assert.assertEquals(new Vector(1,4,7).sumarFila(), transposedM.getVectors().get(0).sumarFila(), 0);
 		Assert.assertEquals(new Vector(2,5,8).sumarFila(), transposedM.getVectors().get(1).sumarFila(), 0);
 		Assert.assertEquals(new Vector(3,6,9).sumarFila(), transposedM.getVectors().get(2).sumarFila(), 0);
+	}
+	
+	@Test
+	public void testPlusMatrix() {
+		Matriz plusM = m.plus(m);
+		Assert.assertEquals(new Vector(2,4,6).sumarFila(), plusM.getVectors().get(0).sumarFila(), 0);
+		Assert.assertEquals(new Vector(8,10,12).sumarFila(), plusM.getVectors().get(1).sumarFila(), 0);
+		Assert.assertEquals(new Vector(14,16,18).sumarFila(), plusM.getVectors().get(2).sumarFila(), 0);
 	}
 	
 	@Test
@@ -91,7 +112,6 @@ public class MatrixTest {
 	@Test
 	public void testInverseMatrix() {
 		Matriz inverseMatrix = m2.inverse();
-		inverseMatrix.mostrar();
 		Assert.assertEquals(new Vector(-5.0/18, 1.0/18, 7.0/18).sumarFila(), inverseMatrix.getVectors().get(0).sumarFila(), 0.01);
 	}
 	
@@ -99,4 +119,12 @@ public class MatrixTest {
 	public void testInverseMatrixFailure() {
 		Matriz inverseMatrix = m.inverse();
 	}
+	
+	@Test
+	public void testJacobi() {
+		Jacobi aJacobi = new Jacobi();
+		aJacobi.jacobiIterations(m3, v9, new Vector(0,0,0), 0.001);
+		//Assert.assertEquals(new Vector(30,36,42).sumarFila(), multipliedM.getVectors().get(0).sumarFila(), 0);
+	}
+	
 }
