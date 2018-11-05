@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 import java.awt.BorderLayout;
 import javax.swing.table.DefaultTableModel;
+
+import EquationProcessor.Result;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
@@ -25,11 +28,11 @@ public class VentanaResultado {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args, Result resultado, Double cantidadVariables) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaResultado window = new VentanaResultado();
+					VentanaResultado window = new VentanaResultado(resultado, cantidadVariables);
 					window.frmSiel.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,15 +44,15 @@ public class VentanaResultado {
 	/**
 	 * Create the application.
 	 */
-	public VentanaResultado() {
-		initialize();
+	public VentanaResultado(Result resultado, Double cantidadVariables) {
+		initialize(resultado, cantidadVariables);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
-		frmSiel = new JFrame();
+	private void initialize(Result resultado, Double cantidadVariables) {
+		frmSiel =  new JFrame();
 		frmSiel.setBounds(100, 100, 600, 444);
 		frmSiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
