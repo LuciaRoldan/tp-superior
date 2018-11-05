@@ -7,7 +7,12 @@ public class Result {
 	ArrayList<Vector> coeficientes = new ArrayList<Vector>();
 	ArrayList<Vector> errores = new ArrayList<Vector>();
 	Vector infinito = new Vector();
+
 	
+	public Result(ArrayList<Vector> coef, ArrayList<Vector> err) {
+		this.setCoeficientes(coef);
+		this.setErrores(err);
+	}
 	
 	public ArrayList<Vector> getCoeficientes(){
 		return this.coeficientes;

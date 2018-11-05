@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -18,6 +19,8 @@ import javax.swing.table.DefaultTableModel;
 
 import EquationProcessor.Matriz;
 import EquationProcessor.Vector;
+import EquationProcessor.Jacobi;
+import EquationProcessor.GaussSeidel;
 
 import javax.swing.border.BevelBorder;
 import javax.swing.JTextField;
@@ -88,7 +91,7 @@ public class VentanaElegirMetodo {
 		lblVectorInicial.setFont(new Font("Arial", Font.PLAIN, 17));
 		
 		JComboBox comboBoxMetodo = new JComboBox();
-		comboBoxMetodo.setModel(new DefaultComboBoxModel(new String[] {"", "Jacobi", "El Otro"}));
+		comboBoxMetodo.setModel(new DefaultComboBoxModel(new String[] {"", "Jacobi", "Gauss Seidel"}));
 		comboBoxMetodo.setToolTipText("");
 		
 		tableVectorInicial = new JTable();
@@ -152,18 +155,36 @@ public class VentanaElegirMetodo {
 		btnAtrs.setBackground(UIManager.getColor("Button.background"));
 		btnAtrs.setFont(UIManager.getFont("Button.font"));
 		
-		JButton btnNewButton = new JButton("Salir");
-		btnNewButton.setFont(UIManager.getFont("Button.font"));
-		
 		JButton btnNewButton_1 = new JButton("Siguiente");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double[] array = new double[matriz.getMatrixSize()];
+				for(int j = 0; j < matriz.getMatrixSize(); j++) {
+					array[j] = Integer.parseInt(String.valueOf(tableVectorInicial.getValueAt(0, j)));
+				}
+				Vector vectorInicial = new Vector(array);
+				switch(String.valueOf(comboBoxMetodo.getSelectedItem())) {
+					case "Jacobi":
+						System.out.println("Jacobi");
+						ArrayList<Vector> resultado = new Jacobi().jacobiIterations(matriz, coeficientes, vectorInicial, Double.valueOf(textFieldCotaError.getText()));
+						break;
+					case "Gauss Seidel":
+						System.out.println("GS");
+						break;
+					default:
+						break;
+				}
+				
+			}
+		});
 		btnNewButton_1.setFont(UIManager.getFont("Button.font"));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addComponent(lblVectorInicial)
 								.addComponent(lblMtodo)
@@ -175,12 +196,9 @@ public class VentanaElegirMetodo {
 								.addComponent(textFieldCantDecim)
 								.addComponent(tableVectorInicial, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
 								.addComponent(comboBoxMetodo, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createSequentialGroup()
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnAtrs, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-							.addGap(150)
-							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-							.addGap(38)))
+							.addComponent(btnAtrs, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)))
 					.addGap(95)
 					.addComponent(btnNewButton_1)
 					.addGap(48))
@@ -207,8 +225,7 @@ public class VentanaElegirMetodo {
 					.addPreferredGap(ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton_1)
-						.addComponent(btnAtrs, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton))
+						.addComponent(btnAtrs, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 					.addGap(21))
 		);
 		frame.getContentPane().setLayout(groupLayout);

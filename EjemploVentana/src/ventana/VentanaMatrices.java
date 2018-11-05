@@ -137,6 +137,23 @@ public class VentanaMatrices {
 		 		                e.consume();
 		 		              }
 		           } else {
+		        	   if((int) c == 10) {
+		        		   int matrixSize = Integer.parseInt(textFieldCantidadEcuaciones.getText());
+							
+		   				String[] arrayDeNewColumn = new String[matrixSize];
+		   				String[] arrayDeNewRow = new String[1] ;
+		   				
+		   				arrayDeNewRow[0]= "New row";
+		   				
+		   				for(int i=0; i<matrixSize; i++) {
+		   					arrayDeNewColumn[i]= "New column";
+		   				}
+		   				
+		   				table.setModel(new DefaultTableModel(
+		   					new Object[matrixSize][matrixSize], arrayDeNewColumn));
+		   				
+		   				table_1.setModel(new DefaultTableModel(new Object[matrixSize][1],  arrayDeNewRow));
+		        	   }
 		        	   e.consume();
 		           }
 		           
