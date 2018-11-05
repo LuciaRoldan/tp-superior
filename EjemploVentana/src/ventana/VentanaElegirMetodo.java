@@ -24,6 +24,10 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.CompoundBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.UIManager;
+import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaElegirMetodo {
 
@@ -67,21 +71,21 @@ public class VentanaElegirMetodo {
 		matriz.mostrar();
 		int cantidadFilas = matriz.getMatrixSize();
 		frame = new JFrame();
-		frame.getContentPane().setBackground(Color.PINK);
+		frame.getContentPane().setBackground(new Color(255, 204, 204));
 		frame.setBounds(100, 100, 600, 444);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblMtodo = new JLabel("M\u00E9todo:");
-		lblMtodo.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblMtodo.setFont(new Font("Arial", Font.PLAIN, 17));
 		
 		JLabel lblCantiidadDeDecimales = new JLabel("Cantidad de decimales:");
-		lblCantiidadDeDecimales.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblCantiidadDeDecimales.setFont(new Font("Arial", Font.PLAIN, 17));
 		
 		JLabel lblCotaDeError = new JLabel("Cota de error:");
-		lblCotaDeError.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblCotaDeError.setFont(new Font("Arial", Font.PLAIN, 17));
 		
 		JLabel lblVectorInicial = new JLabel("Vector inicial:");
-		lblVectorInicial.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblVectorInicial.setFont(new Font("Arial", Font.PLAIN, 17));
 		
 		JComboBox comboBoxMetodo = new JComboBox();
 		comboBoxMetodo.setModel(new DefaultComboBoxModel(new String[] {"", "Jacobi", "El Otro"}));
@@ -139,60 +143,47 @@ public class VentanaElegirMetodo {
 		textFieldCotaError.setColumns(10);
 		
 		JButton btnAtrs = new JButton("Atr\u00E1s");
+		btnAtrs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+			}
+		});
 		btnAtrs.setForeground(new Color(0, 0, 0));
-		btnAtrs.setBackground(new Color(255, 20, 147));
-		btnAtrs.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		btnAtrs.setBackground(UIManager.getColor("Button.background"));
+		btnAtrs.setFont(UIManager.getFont("Button.font"));
 		
 		JButton btnNewButton = new JButton("Salir");
-		btnNewButton.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		btnNewButton.setFont(UIManager.getFont("Button.font"));
 		
 		JButton btnNewButton_1 = new JButton("Siguiente");
-		btnNewButton_1.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
+		btnNewButton_1.setFont(UIManager.getFont("Button.font"));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblVectorInicial)
-					.addContainerGap(468, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblCantiidadDeDecimales)
-							.addGap(37))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(18)
-											.addComponent(lblMtodo))
-										.addGroup(groupLayout.createSequentialGroup()
-											.addContainerGap()
-											.addComponent(lblCotaDeError)))
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addGroup(groupLayout.createSequentialGroup()
-											.addGap(103)
-											.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-												.addComponent(comboBoxMetodo, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
-												.addComponent(tableVectorInicial, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)))
-										.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-											.addPreferredGap(ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-											.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-												.addComponent(textFieldCantDecim, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-												.addComponent(textFieldCotaError, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-											.addGap(53))))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addContainerGap()
-									.addComponent(btnAtrs)
-									.addPreferredGap(ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
-									.addComponent(btnNewButton)
-									.addGap(27)))
-							.addPreferredGap(ComponentPlacement.RELATED)))
-					.addGap(143)
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(lblVectorInicial)
+								.addComponent(lblMtodo)
+								.addComponent(lblCantiidadDeDecimales)
+								.addComponent(lblCotaDeError))
+							.addGap(28)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(textFieldCotaError)
+								.addComponent(textFieldCantDecim)
+								.addComponent(tableVectorInicial, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+								.addComponent(comboBoxMetodo, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnAtrs, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+							.addGap(150)
+							.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+							.addGap(38)))
+					.addGap(95)
 					.addComponent(btnNewButton_1)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(48))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -213,10 +204,10 @@ public class VentanaElegirMetodo {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblCotaDeError)
 						.addComponent(textFieldCotaError, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnAtrs)
 						.addComponent(btnNewButton_1)
+						.addComponent(btnAtrs, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnNewButton))
 					.addGap(21))
 		);
