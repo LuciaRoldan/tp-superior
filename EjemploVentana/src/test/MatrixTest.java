@@ -11,8 +11,11 @@ public class MatrixTest {
 	Vector v1 = new Vector(1, 2, 3);
 	Vector v2 = new Vector(4, 5, 6);
 	Vector v3 = new Vector(7, 8, 9);
+	Vector v4 = new Vector(2, 3, 1);
+	Vector v5 = new Vector(3, 1, 2);	
 
 	Matriz m = new Matriz(3, 3, v1, v2, v3);
+	Matriz m2 = new Matriz(3, 3, v1, v4, v5);
 
 	@Test
 	// m should not be row diagonals
@@ -78,6 +81,13 @@ public class MatrixTest {
 	@Test
 	public void testMultiplyVector() {
 		Vector multipliedVector = m.multiplyVector(v1);		
-		Assert.assertEquals(new Vector(1+4+9,4+10+18,7+16+27).sumarFilaAbs(), multipliedVector.sumarFila(), 0);
+		Assert.assertEquals(new Vector(1+4+9,4+10+18,7+16+27).sumarFila(), multipliedVector.sumarFila(), 0);
+	}
+	
+	@Test
+	public void testInverseMatrix() {
+		Matriz inverseMatrix = m2.inverse();
+		inverseMatrix.mostrar();
+		Assert.assertEquals(new Vector(-5.0/18, 1.0/18, 7.0/18).sumarFila(), inverseMatrix.getVectors().get(0).sumarFila(), 0.01);
 	}
 }

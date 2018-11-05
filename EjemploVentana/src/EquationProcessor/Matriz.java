@@ -213,8 +213,7 @@ public class Matriz {
 		
 		Algebra alg = new Algebra();
 		DoubleMatrix2D aMatrix = new DenseDoubleMatrix2D(this.getCoeficientes());
-		alg.inverse(aMatrix);
-		ArrayList<Vector> vectores = this.initializeVectors(aMatrix.toArray());
+		ArrayList<Vector> vectores = this.initializeVectors(alg.inverse(aMatrix).toArray());
 		return new Matriz(this.m, this.m, vectores);
 	}
 	
