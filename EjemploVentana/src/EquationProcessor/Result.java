@@ -8,10 +8,12 @@ public class Result {
 	ArrayList<Vector> errores = new ArrayList<Vector>();
 	Vector infinito = new Vector();
 
+	public Result() {};
 	
-	public Result(ArrayList<Vector> coef, ArrayList<Vector> err) {
+	public Result(ArrayList<Vector> coef, ArrayList<Vector> err, Vector infinito) {
 		this.setCoeficientes(coef);
 		this.setErrores(err);
+		this.setInfinito(infinito);
 	}
 	
 	public ArrayList<Vector> getCoeficientes(){

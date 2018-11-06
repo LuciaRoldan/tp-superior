@@ -18,6 +18,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import EquationProcessor.Matriz;
+import EquationProcessor.Result;
 import EquationProcessor.Vector;
 import EquationProcessor.Jacobi;
 import EquationProcessor.GaussSeidel;
@@ -166,7 +167,11 @@ public class VentanaElegirMetodo {
 				switch(String.valueOf(comboBoxMetodo.getSelectedItem())) {
 					case "Jacobi":
 						System.out.println("Jacobi");
-						ArrayList<Vector> resultado = new Jacobi().jacobiIterations(matriz, coeficientes, vectorInicial, Double.valueOf(textFieldCotaError.getText()));
+						//ArrayList<Vector> resultado = new Jacobi().jacobiIterations(matriz, coeficientes, vectorInicial, Double.valueOf(textFieldCotaError.getText()));
+						Result resultado = new Jacobi().jacobiIterations(matriz, coeficientes, vectorInicial, Double.valueOf(textFieldCotaError.getText()));
+						int cantidadCoeficientes = coeficientes.getValues().size();
+						VentanaResultado res = new VentanaResultado(resultado, cantidadCoeficientes);
+						res.main(null, resultado, cantidadCoeficientes);
 						break;
 					case "Gauss Seidel":
 						System.out.println("GS");

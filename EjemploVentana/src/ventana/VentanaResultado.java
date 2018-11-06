@@ -28,7 +28,7 @@ public class VentanaResultado {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args, Result resultado, Double cantidadVariables) {
+	public static void main(String[] args, Result resultado, int cantidadVariables) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -44,31 +44,30 @@ public class VentanaResultado {
 	/**
 	 * Create the application.
 	 */
-	public VentanaResultado(Result resultado, Double cantidadVariables) {
+	public VentanaResultado(Result resultado, int cantidadVariables) {
 		initialize(resultado, cantidadVariables);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(Result resultado, Double cantidadVariables) {
+	private void initialize(Result res, int cantidadVariables) {
 		frmSiel =  new JFrame();
 		frmSiel.setBounds(100, 100, 600, 444);
 		frmSiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Result resultado = res;
+		int cantidadIteraciones = resultado.getCoeficientes().size();
 		
 		table = new JTable();
 		table.setFont(new Font("Calibri", Font.PLAIN, 11));
+		
+		
+		String[][] leTabla = new String[cantidadIteraciones+1][cantidadVariables+1];
+		leTabla = crearTablaResultados(resultado, cantidadVariables);
+		
+		
 		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"x(k)", "x_1", "x_2", "x_2"},
-				{"x(0)", null, null, null},
-				{"x(1)", null, null, null},
-				{"x(2)", null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column", "New column"
-			}
-		));
+			leTabla, null));
 		
 		table_1 = new JTable();
 		table_1.setModel(new DefaultTableModel(
@@ -136,17 +135,49 @@ public class VentanaResultado {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(100)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(table, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
 						.addComponent(table_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(table_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(136)
 					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton_1)
 						.addComponent(btnNewButton_2))
 					.addGap(29))
 		);
 		frmSiel.getContentPane().setLayout(groupLayout);
+	}
+
+	private String[][] crearTablaResultados(Result resultado, int cantidadVariables) {
+		
+		int cantidadIteraciones = resultado.getCoeficientes().size();
+		System.out.print("cant it" + String.valueOf(cantidadIteraciones));
+		System.out.print("cant var" + String.valueOf(cantidadVariables));
+		
+		String[][] tabla = new String[cantidadIteraciones+1][cantidadVariables+1];
+		
+		
+		String[] nombreDeColumnas = new String[cantidadVariables+1];
+		nombreDeColumnas[0] = "";
+		for(int i=1; i<cantidadVariables+1; i++) {
+			nombreDeColumnas[i] = "x_" + String.valueOf(i);
+		}
+		
+		tabla[0] = nombreDeColumnas;
+		
+		
+		for(int i = 1; i < cantidadIteraciones+1; i++) {
+			String[] fila = new String[cantidadVariables+1];
+			fila[0] = "x(" + String.valueOf(i-1) + ")";
+			for(int j = 1; j < cantidadVariables+1; j++) {
+				resultado.getCoeficientes().get(i-1).mostrar();
+				fila[j] = String.valueOf(resultado.getCoeficientes().get(i-1).getValues().get(j-1));
+			}
+			System.out.print("sali de un for chiquito");
+			tabla[i] = fila;
+		}
+		
+		return tabla;
 	}
 }
