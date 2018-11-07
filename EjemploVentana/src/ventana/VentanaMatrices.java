@@ -95,8 +95,7 @@ public class VentanaMatrices {
 		int cantidadEcuaciones;
 		frmSiel = new JFrame();
 		frmSiel.setBackground(Color.WHITE);
-		frmSiel.setIconImage(Toolkit.getDefaultToolkit()
-				.getImage("C:\\Users\\Daiana\\Desktop\\App Superior\\D_Q_NP_613031-MLA27595245923_062018-Q (1).jpg"));
+		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaMatrices.class.getResource("/imagenes/Cubo icono chico.jpg")));
 		frmSiel.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		frmSiel.setTitle("SIEL");
 		frmSiel.setBounds(100, 100, 561, 444);
@@ -131,7 +130,7 @@ public class VentanaMatrices {
 				} catch (Exception e) {
 					final JPanel panel = new JPanel();
 
-					JOptionPane.showMessageDialog(panel, "No seas forro, pon√© un n√∫mero v√°lido", "Error",
+					JOptionPane.showMessageDialog(panel, "No seas forro, ponÈ un n˙mero v·lido.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}
 
@@ -227,14 +226,14 @@ public class VentanaMatrices {
 						// ErrorDom.setVisible(true);
 						final JPanel panel = new JPanel();
 
-						JOptionPane.showMessageDialog(panel, "No seas forro, pon√© una matriz diagonalmente dominante",
+						JOptionPane.showMessageDialog(panel, "No seas forro, ponÈ una matriz diagonalmente dominante.",
 								"Error", JOptionPane.ERROR_MESSAGE);
 
 					}
 				} catch (Exception ex) {
 					final JPanel panel = new JPanel();
 
-					JOptionPane.showMessageDialog(panel, "No seas forro, carg√° una matriz", "Error",
+					JOptionPane.showMessageDialog(panel, "No seas forro, carg· una matriz.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 
 				}
@@ -284,7 +283,7 @@ public class VentanaMatrices {
 				} catch (Exception e) {
 					final JPanel panel = new JPanel();
 
-					JOptionPane.showMessageDialog(panel, "No seas forro, carg√° una matriz", "Error",
+					JOptionPane.showMessageDialog(panel, "No seas forro, carg· una matriz.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}

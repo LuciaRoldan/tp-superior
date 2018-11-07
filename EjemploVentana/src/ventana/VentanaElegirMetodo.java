@@ -32,10 +32,11 @@ import javax.swing.UIManager;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class VentanaElegirMetodo {
 
-	protected JFrame frame;
+	protected JFrame frmSiel;
 	private JTable tableVectorInicial;
 	private JTextField textFieldCantDecim;
 	private JTextField textFieldCotaError;
@@ -48,7 +49,7 @@ public class VentanaElegirMetodo {
 			public void run() {
 				try {
 					VentanaElegirMetodo window = new VentanaElegirMetodo(matriz, coeficientes);
-					window.frame.setVisible(true);
+					window.frmSiel.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -74,10 +75,12 @@ public class VentanaElegirMetodo {
 		System.out.print("Matriz: ");
 		matriz.mostrar();
 		int cantidadFilas = matriz.getMatrixSize();
-		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(255, 204, 204));
-		frame.setBounds(100, 100, 600, 444);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSiel = new JFrame();
+		frmSiel.setTitle("SIEL");
+		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaElegirMetodo.class.getResource("/imagenes/Cubo icono chico.jpg")));
+		frmSiel.getContentPane().setBackground(new Color(255, 204, 204));
+		frmSiel.setBounds(100, 100, 600, 444);
+		frmSiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblMtodo = new JLabel("M\u00E9todo:");
 		lblMtodo.setFont(new Font("Arial", Font.PLAIN, 17));
@@ -149,7 +152,7 @@ public class VentanaElegirMetodo {
 		JButton btnAtrs = new JButton("Atr\u00E1s");
 		btnAtrs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frame.dispose();
+				frmSiel.dispose();
 			}
 		});
 		btnAtrs.setForeground(new Color(0, 0, 0));
@@ -185,7 +188,7 @@ public class VentanaElegirMetodo {
 			}
 		});
 		btnNewButton_1.setFont(UIManager.getFont("Button.font"));
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		GroupLayout groupLayout = new GroupLayout(frmSiel.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
@@ -235,6 +238,6 @@ public class VentanaElegirMetodo {
 						.addComponent(btnAtrs, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 					.addGap(21))
 		);
-		frame.getContentPane().setLayout(groupLayout);
+		frmSiel.getContentPane().setLayout(groupLayout);
 	}
 }

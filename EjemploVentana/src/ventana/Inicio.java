@@ -51,9 +51,9 @@ public class Inicio {
 		JLabel lblBienvenidosASiel = new JLabel("BIENVENIDOS A SIEL!");
 		lblBienvenidosASiel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
-		JLabel lblNewLabel_1 = new JLabel("Resoluci\u00F3n de ecuaciones diferenciales");
+		JLabel lblNewLabel_1 = new JLabel("Resoluci\u00F3n de sistemas de ecuaciones lineales");
 		
-		JLabel lblPorElMtodo = new JLabel("por el m\u00E9todo de Jacobi o Gauss-Seidel");
+		JLabel lblPorElMtodo = new JLabel("por el m\u00E9todo de Jacobi o Gauss-Seidel.");
 		
 
 		
@@ -67,25 +67,27 @@ public class Inicio {
 		});
 		GroupLayout groupLayout = new GroupLayout(frmSiel.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(113)
-							.addComponent(lblNewLabel))
-						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(135)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblPorElMtodo)
-								.addComponent(lblNewLabel_1)))
+							.addComponent(lblPorElMtodo))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(144)
-							.addComponent(lblBienvenidosASiel)))
-					.addContainerGap(170, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addComponent(lblBienvenidosASiel))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(113)
+							.addComponent(lblNewLabel)))
+					.addContainerGap(120, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(382, Short.MAX_VALUE)
 					.addComponent(btnComenzar)
 					.addGap(25))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(123)
+					.addComponent(lblNewLabel_1)
+					.addContainerGap(150, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)

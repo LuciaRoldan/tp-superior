@@ -17,6 +17,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class VentanaResultado {
 
@@ -53,6 +54,10 @@ public class VentanaResultado {
 	 */
 	private void initialize(Result res, int cantidadVariables) {
 		frmSiel =  new JFrame();
+		frmSiel.setTitle("SIEL");
+		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaResultado.class.getResource("/imagenes/Cubo icono chico.jpg")));
+		frmSiel.getContentPane().setBackground(new Color(255, 204, 204));
+		frmSiel.getContentPane().setForeground(new Color(0, 0, 0));
 		frmSiel.setBounds(100, 100, 600, 444);
 		frmSiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Result resultado = res;
