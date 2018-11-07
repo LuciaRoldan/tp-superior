@@ -170,6 +170,8 @@ public class VentanaElegirMetodo {
 						//ArrayList<Vector> resultado = new Jacobi().jacobiIterations(matriz, coeficientes, vectorInicial, Double.valueOf(textFieldCotaError.getText()));
 						Result resultado = new Jacobi().jacobiIterations(matriz, coeficientes, vectorInicial, Double.valueOf(textFieldCotaError.getText()));
 						int cantidadCoeficientes = coeficientes.getValues().size();
+						System.out.println("cantidadCoeficientes: ");
+						System.out.println(cantidadCoeficientes);
 						VentanaResultado res = new VentanaResultado(resultado, cantidadCoeficientes);
 						res.main(null, resultado, cantidadCoeficientes);
 						break;

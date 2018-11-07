@@ -60,14 +60,19 @@ public class VentanaResultado {
 		
 		table = new JTable();
 		table.setFont(new Font("Calibri", Font.PLAIN, 11));
-		
-		
+				
 		String[][] leTabla = new String[cantidadIteraciones+1][cantidadVariables+1];
 		leTabla = crearTablaResultados(resultado, cantidadVariables);
 		
+		String[] arrayDeNewColumn = new String[cantidadVariables+1];
+		
+		for (int i = 0; i < cantidadVariables+1; i++) {
+			arrayDeNewColumn[i] = "New column";
+		}
+
 		
 		table.setModel(new DefaultTableModel(
-			leTabla, null));
+			leTabla, arrayDeNewColumn));
 		
 		table_1 = new JTable();
 		table_1.setModel(new DefaultTableModel(
@@ -135,12 +140,12 @@ public class VentanaResultado {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(100)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(table, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+						.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(table_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(table_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(136)
 					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton_1)
 						.addComponent(btnNewButton_2))
