@@ -215,6 +215,8 @@ public class VentanaMatrices {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					int cantidadEcuaciones = Integer.parseInt(textFieldCantidadEcuaciones.getText());
+					table.getCellEditor().stopCellEditing();
+					table_1.getCellEditor().stopCellEditing();
 					Matriz matriz = inicializarMatriz(cantidadEcuaciones, table);
 					if (matriz.isDiagonallyDominant()) {
 						ErrorDom.setVisible(false);
@@ -227,14 +229,14 @@ public class VentanaMatrices {
 						// ErrorDom.setVisible(true);
 						final JPanel panel = new JPanel();
 
-						JOptionPane.showMessageDialog(panel, "No seas forro, poné una matriz diagonalmente dominante.",
+						JOptionPane.showMessageDialog(panel, "La matriz no es diagonalmente dominante.",
 								"Error", JOptionPane.ERROR_MESSAGE);
 
 					}
 				} catch (Exception ex) {
 					final JPanel panel = new JPanel();
 
-					JOptionPane.showMessageDialog(panel, "No seas forro, cargá una matriz.", "Error",
+					JOptionPane.showMessageDialog(panel, "Se deben completar todos los campos.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 
 				}
@@ -242,7 +244,7 @@ public class VentanaMatrices {
 		});
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			}
+				}
 		});
 
 		JButton button_1 = new JButton("Inicio");
@@ -284,7 +286,7 @@ public class VentanaMatrices {
 				} catch (Exception e) {
 					final JPanel panel = new JPanel();
 
-					JOptionPane.showMessageDialog(panel, "No seas forro, cargá una matriz.", "Error",
+					JOptionPane.showMessageDialog(panel, "Se deben completar todos los campos.", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
