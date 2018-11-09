@@ -172,7 +172,7 @@ public class VentanaMatrices {
 		textFieldCantidadEcuaciones.setColumns(10);
 
 		JLabel lblA = new JLabel("AX=B");
-		lblA.setFont(new Font("Calibri", Font.PLAIN, 20));
+		lblA.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		JLabel lblN = new JLabel("Cantidad de ecuaciones:");
 		lblN.setFont(new Font("Calibri", Font.PLAIN, 12));
@@ -198,16 +198,16 @@ public class VentanaMatrices {
 		table_1.setCellSelectionEnabled(true);
 
 		JLabel label = new JLabel("A=");
-		label.setFont(new Font("Calibri", Font.PLAIN, 18));
+		label.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
 		JLabel lblB = new JLabel("B=");
-		lblB.setFont(new Font("Calibri", Font.PLAIN, 18));
+		lblB.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
 		JLabel ErrorDom = new JLabel("Error, la matriz no es diagonalmente dominante");
 		ErrorDom.setHorizontalAlignment(SwingConstants.CENTER);
 		ErrorDom.setForeground(new Color(0, 0, 0));
 		ErrorDom.setBackground(new Color(255, 0, 0));
-		ErrorDom.setFont(new Font("Calibri", Font.PLAIN, 12));
+		ErrorDom.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		ErrorDom.setVisible(false);
 
 		JButton button = new JButton("Siguiente");
@@ -297,13 +297,13 @@ public class VentanaMatrices {
 		JSeparator separator_1 = new JSeparator();
 
 		JLabel label_1 = new JLabel("Norma 1:");
-		label_1.setFont(new Font("Calibri", Font.PLAIN, 12));
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 
 		JLabel label_2 = new JLabel("Norma 2:");
-		label_2.setFont(new Font("Calibri", Font.PLAIN, 12));
+		label_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 
 		JLabel label_3 = new JLabel("Norma infinito:");
-		label_3.setFont(new Font("Calibri", Font.PLAIN, 12));
+		label_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 
 		textField = new JTextField();
 		textField.setEditable(false);
@@ -386,14 +386,11 @@ public class VentanaMatrices {
 						.addComponent(textFieldCantidadEcuaciones, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnChangeMatrix))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
-							.addGap(4)
-							.addComponent(label, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblB, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
-							.addComponent(table_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblB, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+						.addComponent(table_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(label, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(separator_1, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGap(5)

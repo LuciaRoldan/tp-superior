@@ -81,26 +81,27 @@ public class VentanaElegirMetodo {
 		frmSiel.setTitle("SIEL");
 		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaElegirMetodo.class.getResource("/imagenes/Cubo icono chico.jpg")));
 		frmSiel.getContentPane().setBackground(new Color(255, 204, 204));
-		frmSiel.setBounds(100, 100, 600, 444);
+		frmSiel.setBounds(100, 100, 484, 322);
 		frmSiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel lblMtodo = new JLabel("M\u00E9todo:");
-		lblMtodo.setFont(new Font("Arial", Font.PLAIN, 17));
+		lblMtodo.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		JLabel lblCantiidadDeDecimales = new JLabel("Cantidad de decimales:");
-		lblCantiidadDeDecimales.setFont(new Font("Arial", Font.PLAIN, 17));
+		lblCantiidadDeDecimales.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		JLabel lblCotaDeError = new JLabel("Cota de error:");
-		lblCotaDeError.setFont(new Font("Arial", Font.PLAIN, 17));
+		lblCotaDeError.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		JLabel lblVectorInicial = new JLabel("Vector inicial:");
-		lblVectorInicial.setFont(new Font("Arial", Font.PLAIN, 17));
+		lblVectorInicial.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		JComboBox comboBoxMetodo = new JComboBox();
 		comboBoxMetodo.setModel(new DefaultComboBoxModel(new String[] {"", "Jacobi", "Gauss Seidel"}));
 		comboBoxMetodo.setToolTipText("");
 		
 		tableVectorInicial = new JTable();
+		tableVectorInicial.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 		tableVectorInicial.setFillsViewportHeight(true);
 		tableVectorInicial.addKeyListener(new KeyAdapter() {
 			@Override
@@ -202,9 +203,12 @@ public class VentanaElegirMetodo {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnAtrs, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addComponent(lblVectorInicial)
 								.addComponent(lblMtodo)
@@ -215,13 +219,10 @@ public class VentanaElegirMetodo {
 								.addComponent(textFieldCotaError)
 								.addComponent(textFieldCantDecim)
 								.addComponent(tableVectorInicial, GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-								.addComponent(comboBoxMetodo, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnAtrs, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)))
-					.addGap(95)
+								.addComponent(comboBoxMetodo, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnNewButton_1)
-					.addGap(48))
+					.addGap(185))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -242,11 +243,11 @@ public class VentanaElegirMetodo {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblCotaDeError)
 						.addComponent(textFieldCotaError, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+					.addGap(35)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton_1)
-						.addComponent(btnAtrs, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-					.addGap(21))
+						.addComponent(btnAtrs, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnNewButton_1))
+					.addContainerGap(144, Short.MAX_VALUE))
 		);
 		frmSiel.getContentPane().setLayout(groupLayout);
 	}

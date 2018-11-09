@@ -64,7 +64,7 @@ public class VentanaResultado {
 		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaResultado.class.getResource("/imagenes/Cubo icono chico.jpg")));
 		frmSiel.getContentPane().setBackground(new Color(255, 204, 204));
 		frmSiel.getContentPane().setForeground(new Color(0, 0, 0));
-		frmSiel.setBounds(100, 100, 737, 402);
+		frmSiel.setBounds(100, 100, 845, 402);
 		frmSiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Result resultado = res;
 		int cantidadIteraciones = resultado.getCoeficientes().size();
@@ -132,7 +132,7 @@ public class VentanaResultado {
 		btnNewButton_2.setToolTipText("botonSalir");
 		
 		JLabel lblResultados = new JLabel("Resultados");
-		lblResultados.setFont(new Font("Calibri", Font.PLAIN, 20));
+		lblResultados.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
@@ -151,19 +151,19 @@ public class VentanaResultado {
 						.addComponent(lblResultados, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(table, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblIteraciones))
+								.addComponent(lblIteraciones)
+								.addComponent(table, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+											.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
 											.addGap(171)
 											.addComponent(btnNewButton_2, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
 										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(table_1, GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+											.addComponent(table_1, GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
 											.addPreferredGap(ComponentPlacement.UNRELATED)
 											.addComponent(separator, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
 											.addGap(3)
@@ -197,7 +197,7 @@ public class VentanaResultado {
 						.addComponent(btnNewButton_2)
 						.addComponent(btnNewButton_1)
 						.addComponent(btnNewButton))
-					.addContainerGap(58, Short.MAX_VALUE))
+					.addContainerGap(16, Short.MAX_VALUE))
 		);
 		frmSiel.getContentPane().setLayout(groupLayout);
 	}
