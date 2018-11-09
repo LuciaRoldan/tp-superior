@@ -72,9 +72,7 @@ public class VentanaElegirMetodo {
 	private void initialize(Matriz mat, Vector coefs) {
 		Matriz matriz = mat;
 		Vector coeficientes = coefs;
-		System.out.print("Vector: ");
 		coeficientes.mostrar();
-		System.out.print("Matriz: ");
 		matriz.mostrar();
 		int cantidadFilas = matriz.getMatrixSize();
 		frmSiel = new JFrame();
@@ -171,25 +169,20 @@ public class VentanaElegirMetodo {
 					array[j] = Integer.parseInt(String.valueOf(tableVectorInicial.getValueAt(0, j)));
 				}
 				Vector vectorInicial = new Vector(array);
+				int cantidadDecimales = Integer.parseInt(textFieldCantDecim.getText());
 				switch(String.valueOf(comboBoxMetodo.getSelectedItem())) {
 					case "Jacobi":
-						System.out.println("Jacobi");
 						Result resultado = new Jacobi().jacobiIterations(matriz, coeficientes, vectorInicial, Double.valueOf(textFieldCotaError.getText()));
 						int cantidadCoeficientes = coeficientes.getValues().size();
-						System.out.println("cantidadCoeficientes: ");
-						System.out.println(cantidadCoeficientes);
-						VentanaResultado res = new VentanaResultado(resultado, cantidadCoeficientes);
-						res.main(null, resultado, cantidadCoeficientes, frmSiel);
+						VentanaResultado res = new VentanaResultado(resultado, cantidadCoeficientes, cantidadDecimales);
+						res.main(null, resultado, cantidadCoeficientes, cantidadDecimales, frmSiel);
 						frmSiel.setVisible(false);
 						break;
 					case "Gauss Seidel":
-						System.out.println("Gauss Seidel");
 						Result resultadoG = new GaussSeidel().gaussSeidelIterations(matriz, coeficientes, vectorInicial, Double.valueOf(textFieldCotaError.getText()));
 						int cantidadCoeficientesG = coeficientes.getValues().size();
-						System.out.println("cantidadCoeficientes: ");
-						System.out.println(cantidadCoeficientesG);
-						VentanaResultado resG = new VentanaResultado(resultadoG, cantidadCoeficientesG);
-						resG.main(null, resultadoG, cantidadCoeficientesG, frmSiel);
+						VentanaResultado resG = new VentanaResultado(resultadoG, cantidadCoeficientesG, cantidadDecimales);
+						resG.main(null, resultadoG, cantidadCoeficientesG, cantidadDecimales, frmSiel);
 						frmSiel.setVisible(false);					
 						break;
 					default:

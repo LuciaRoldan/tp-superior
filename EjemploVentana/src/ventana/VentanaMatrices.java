@@ -130,7 +130,7 @@ public class VentanaMatrices {
 				} catch (Exception e) {
 					final JPanel panel = new JPanel();
 
-					JOptionPane.showMessageDialog(panel, "No seas forro, poné un número válido.", "Error",
+					JOptionPane.showMessageDialog(panel, "Ingresar valores válidos", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}
 
@@ -261,7 +261,6 @@ public class VentanaMatrices {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				System.out.println("GTU VIEJA");
 				if (textFieldCantidadEcuaciones.getText().length() < 4) {
 					if (!(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE
 							|| c == KeyEvent.VK_PERIOD || c == KeyEvent.VK_MINUS)) {

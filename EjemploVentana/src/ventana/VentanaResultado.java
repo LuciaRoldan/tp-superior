@@ -34,11 +34,11 @@ public class VentanaResultado {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args, Result resultado, int cantidadVariables, JFrame fAnterior) {
+	public static void main(String[] args, Result resultado, int cantidadVariables, int cantidadDecimales, JFrame fAnterior) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaResultado window = new VentanaResultado(resultado, cantidadVariables);
+					VentanaResultado window = new VentanaResultado(resultado, cantidadVariables, cantidadDecimales);
 					window.frmSiel.setVisible(true);
 					window.frameAnterior = fAnterior;
 				} catch (Exception e) {
@@ -50,15 +50,16 @@ public class VentanaResultado {
 
 	/**
 	 * Create the application.
+	 * @param cantidadDecimales 
 	 */
-	public VentanaResultado(Result resultado, int cantidadVariables) {
-		initialize(resultado, cantidadVariables);
+	public VentanaResultado(Result resultado, int cantidadVariables, int cantidadDecimales) {
+		initialize(resultado, cantidadVariables, cantidadDecimales);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(Result res, int cantidadVariables) {
+	private void initialize(Result res, int cantidadVariables, int cantidadDecimales) {
 		frmSiel =  new JFrame();
 		frmSiel.setTitle("SIEL");
 		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaResultado.class.getResource("/imagenes/Cubo icono chico.jpg")));
@@ -73,7 +74,7 @@ public class VentanaResultado {
 		table.setFont(new Font("Calibri", Font.PLAIN, 11));
 				
 		String[][] leTabla = new String[cantidadIteraciones+1][cantidadVariables+1];
-		leTabla = crearTablaResultados(resultado, cantidadVariables);
+		leTabla = crearTablaResultados(resultado, cantidadVariables, cantidadDecimales);
 		String[] arrayDeNewColumn = new String[cantidadVariables+1];
 	
 		
@@ -86,7 +87,7 @@ public class VentanaResultado {
 		
 		table_1 = new JTable();
 		String[][] leTablaErrores = new String[cantidadIteraciones+1][cantidadVariables+1];
-		leTablaErrores = crearTablaErrores(resultado, cantidadVariables);	
+		leTablaErrores = crearTablaErrores(resultado, cantidadVariables, cantidadDecimales);	
 		table_1.setModel(new DefaultTableModel(
 			leTablaErrores, arrayDeNewColumn
 		));
@@ -97,7 +98,7 @@ public class VentanaResultado {
 		columna[0] = "New column";
 		
 		String[][] leTablaInfinito = new String[cantidadIteraciones+1][1];
-		leTablaInfinito = crearTablaInfinito(resultado);
+		leTablaInfinito = crearTablaInfinito(resultado, cantidadDecimales);
 		table_2.setModel(new DefaultTableModel( 
 				leTablaInfinito, columna
 		));
@@ -202,7 +203,7 @@ public class VentanaResultado {
 		frmSiel.getContentPane().setLayout(groupLayout);
 	}
 
-	private String[][] crearTablaInfinito(Result resultado) {
+	private String[][] crearTablaInfinito(Result resultado, int cantidadDecimales) {
 		
 		int cantidadIteraciones = resultado.getCoeficientes().size();
 		String[][] tabla = new String[cantidadIteraciones+1][1];
@@ -210,20 +211,15 @@ public class VentanaResultado {
 		tabla[0][0] = "||x(n) - x(n-1)||";
 		
 		for(int i = 0; i < cantidadIteraciones-1; i++) {
-			tabla[i+2][0] = String.valueOf(resultado.getInfinito().getValues().get(i));  
+			tabla[i+2][0] = String.format("%."+cantidadDecimales+"f", resultado.getInfinito().getValues().get(i));  
 		}
-		
-		System.out.printf("termine de armar la infinito");
 		
 		return tabla;
 	}
 
-	private String[][] crearTablaResultados(Result resultado, int cantidadVariables) {
+	private String[][] crearTablaResultados(Result resultado, int cantidadVariables, int cantidadDecimales) {
 		
 		int cantidadIteraciones = resultado.getCoeficientes().size();
-		System.out.print("cant it" + String.valueOf(cantidadIteraciones));
-		System.out.print("cant var" + String.valueOf(cantidadVariables));
-		
 		String[][] tabla = new String[cantidadIteraciones+1][cantidadVariables+1];
 		
 		
@@ -241,9 +237,9 @@ public class VentanaResultado {
 			fila[0] = "x(" + String.valueOf(i-1) + ")";
 			for(int j = 1; j < cantidadVariables+1; j++) {
 				resultado.getCoeficientes().get(i-1).mostrar();
-				fila[j] = String.valueOf(resultado.getCoeficientes().get(i-1).getValues().get(j-1));
+				fila[j] = String.format("%."+cantidadDecimales+"f", resultado.getCoeficientes().get(i-1).getValues().get(j-1));
 			}
-			System.out.print("sali de un for chiquito");
+
 			tabla[i] = fila;
 		}
 		
@@ -251,12 +247,9 @@ public class VentanaResultado {
 	}
 	
 	
-private String[][] crearTablaErrores(Result resultado, int cantidadVariables) {
+private String[][] crearTablaErrores(Result resultado, int cantidadVariables, int cantidadDecimales) {
 		
 		int cantidadIteraciones = resultado.getCoeficientes().size();
-		//System.out.print("cant it" + String.valueOf(cantidadIteraciones));
-		//System.out.print("cant var" + String.valueOf(cantidadVariables));
-		
 		String[][] tabla = new String[cantidadIteraciones+1][cantidadVariables+1];
 		
 		
@@ -273,9 +266,9 @@ private String[][] crearTablaErrores(Result resultado, int cantidadVariables) {
 			fila[0] = "x_" + String.valueOf(i-1) + " - x_" + String.valueOf(i-2);
 			for(int j = 1; j < cantidadVariables+1; j++) {
 				//resultado.getErrores().get(i-1).mostrar();
-				fila[j] = String.valueOf(resultado.getErrores().get(i-2).getValues().get(j-1));
+				fila[j] = String.format("%."+cantidadDecimales+"f", resultado.getErrores().get(i-2).getValues().get(j-1));
 			}
-			//System.out.print("sali de un for chiquito");
+
 			tabla[i] = fila;
 		}
 		
