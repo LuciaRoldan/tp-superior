@@ -55,8 +55,6 @@ public class GaussSeidel {
 		Double normaInfinito = anterior.minus(auxVector).normaInfinito();
 		resultado.agregarInfinito(normaInfinito);
 		
-		vectores.forEach(v -> v.mostrar());
-		
 		return resultado;			
 	}
 

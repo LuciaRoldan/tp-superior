@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -23,13 +22,10 @@ import EquationProcessor.Vector;
 import EquationProcessor.Jacobi;
 import EquationProcessor.GaussSeidel;
 
-import javax.swing.border.BevelBorder;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.CompoundBorder;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.UIManager;
-import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
@@ -69,11 +65,10 @@ public class VentanaElegirMetodo {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings({ "serial", "unchecked", "rawtypes"})
 	private void initialize(Matriz mat, Vector coefs) {
 		Matriz matriz = mat;
 		Vector coeficientes = coefs;
-		coeficientes.mostrar();
-		matriz.mostrar();
 		int cantidadFilas = matriz.getMatrixSize();
 		frmSiel = new JFrame();
 		frmSiel.setTitle("SIEL");
@@ -85,8 +80,8 @@ public class VentanaElegirMetodo {
 		JLabel lblMtodo = new JLabel("M\u00E9todo:");
 		lblMtodo.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
-		JLabel lblCantiidadDeDecimales = new JLabel("Cantidad de decimales:");
-		lblCantiidadDeDecimales.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		JLabel lblCantidadDeDecimales = new JLabel("Cantidad de decimales:");
+		lblCantidadDeDecimales.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		JLabel lblCotaDeError = new JLabel("Cota de error:");
 		lblCotaDeError.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -174,15 +169,13 @@ public class VentanaElegirMetodo {
 					case "Jacobi":
 						Result resultado = new Jacobi().jacobiIterations(matriz, coeficientes, vectorInicial, Double.valueOf(textFieldCotaError.getText()));
 						int cantidadCoeficientes = coeficientes.getValues().size();
-						VentanaResultado res = new VentanaResultado(resultado, cantidadCoeficientes, cantidadDecimales);
-						res.main(null, resultado, cantidadCoeficientes, cantidadDecimales, frmSiel);
+						VentanaResultado.main(null, resultado, cantidadCoeficientes, cantidadDecimales, frmSiel);
 						frmSiel.setVisible(false);
 						break;
 					case "Gauss Seidel":
 						Result resultadoG = new GaussSeidel().gaussSeidelIterations(matriz, coeficientes, vectorInicial, Double.valueOf(textFieldCotaError.getText()));
 						int cantidadCoeficientesG = coeficientes.getValues().size();
-						VentanaResultado resG = new VentanaResultado(resultadoG, cantidadCoeficientesG, cantidadDecimales);
-						resG.main(null, resultadoG, cantidadCoeficientesG, cantidadDecimales, frmSiel);
+						VentanaResultado.main(null, resultadoG, cantidadCoeficientesG, cantidadDecimales, frmSiel);
 						frmSiel.setVisible(false);					
 						break;
 					default:
@@ -205,7 +198,7 @@ public class VentanaElegirMetodo {
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addComponent(lblVectorInicial)
 								.addComponent(lblMtodo)
-								.addComponent(lblCantiidadDeDecimales)
+								.addComponent(lblCantidadDeDecimales)
 								.addComponent(lblCotaDeError))
 							.addGap(28)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
@@ -230,7 +223,7 @@ public class VentanaElegirMetodo {
 						.addComponent(lblVectorInicial))
 					.addGap(34)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblCantiidadDeDecimales)
+						.addComponent(lblCantidadDeDecimales)
 						.addComponent(textFieldCantDecim, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(26)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)

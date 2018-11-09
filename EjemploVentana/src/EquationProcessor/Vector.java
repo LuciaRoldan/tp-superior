@@ -2,7 +2,6 @@ package EquationProcessor;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Vector {
 	private List<Double> values = new ArrayList<Double>();
@@ -36,12 +35,6 @@ public class Vector {
 		return sum < Math.abs(max);
 	}
 
-	public void mostrar() {
-		for (int i = 0; i < values.size(); i++) {
-			System.out.println("vector " + this.valueAt(i));
-		}
-	}
-	
 	public double sumarFila() {
 		return this.values.stream().mapToDouble(x -> Double.valueOf(x)).sum();
 	}
@@ -86,4 +79,5 @@ public class Vector {
 		// TODO Auto-generated method stub
 		return this.values.stream().mapToDouble(value -> Math.abs(value)).max().getAsDouble();
 	}
+	
 }

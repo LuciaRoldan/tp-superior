@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTable;
-import java.awt.BorderLayout;
 import javax.swing.table.DefaultTableModel;
 
 import EquationProcessor.Result;
@@ -66,6 +65,7 @@ public class VentanaResultado {
 		frmSiel.getContentPane().setBackground(new Color(255, 235, 205));
 		frmSiel.getContentPane().setForeground(new Color(0, 0, 0));
 		frmSiel.setBounds(100, 100, 940, 402);
+		frmSiel.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frmSiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Result resultado = res;
 		int cantidadIteraciones = resultado.getCoeficientes().size();
@@ -86,6 +86,7 @@ public class VentanaResultado {
 		
 		
 		table_1 = new JTable();
+		table_1.setFont(new Font("Calibri", Font.PLAIN, 11));
 		String[][] leTablaErrores = new String[cantidadIteraciones+1][cantidadVariables+1];
 		leTablaErrores = crearTablaErrores(resultado, cantidadVariables, cantidadDecimales);	
 		table_1.setModel(new DefaultTableModel(
@@ -93,6 +94,7 @@ public class VentanaResultado {
 		));
 		
 		table_2 = new JTable();
+		table_2.setFont(new Font("Calibri", Font.PLAIN, 11));
 		
 		String[] columna = new String[1];
 		columna[0] = "New column";
@@ -108,7 +110,7 @@ public class VentanaResultado {
 		btnNewButton.setFont(UIManager.getFont("Button.font"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new VentanaMatrices().main(null);
+				VentanaMatrices.main(null);
 				frameAnterior.dispose();
 				frmSiel.dispose();
 			}
@@ -236,7 +238,6 @@ public class VentanaResultado {
 			String[] fila = new String[cantidadVariables+1];
 			fila[0] = "x(" + String.valueOf(i-1) + ")";
 			for(int j = 1; j < cantidadVariables+1; j++) {
-				resultado.getCoeficientes().get(i-1).mostrar();
 				fila[j] = String.format("%."+cantidadDecimales+"f", resultado.getCoeficientes().get(i-1).getValues().get(j-1));
 			}
 

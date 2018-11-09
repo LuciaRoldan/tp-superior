@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Jacobi {
 	
 	public Result jacobiIterations(Matriz matriz, Vector vectorCoeficientes, Vector vectorInicial, double criterioDeParo){
-	//public ArrayList<Vector> jacobiIterations(Matriz matriz, Vector vectorCoeficientes, Vector vectorInicial, double criterioDeParo){
 		
 		Result resultado = new Result();
 		
@@ -35,7 +34,6 @@ public class Jacobi {
 						
 		while(! cumpleCriterioDeParo(anterior, auxVector, criterioDeParo)) {
 			
-			//agrego errores y norma infinito
 			Vector errores = anterior.minus(auxVector);
 			resultado.agregarError(errores);
 			
@@ -48,16 +46,12 @@ public class Jacobi {
 			resultado.agregarResultado(auxVector);
 		}
 		
-		//como no entre al while, entonces no agregue errores y norma a resultado, agrego antes de terminar
 		Vector errores = anterior.minus(auxVector);
 		resultado.agregarError(errores);
 		
 		Double normaInfinito = anterior.minus(auxVector).normaInfinito();
 		resultado.agregarInfinito(normaInfinito);
 		
-		vectores.forEach(v -> v.mostrar());
-		
-		//return vectores;
 		return resultado;
 	}
 

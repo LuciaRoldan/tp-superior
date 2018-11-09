@@ -39,8 +39,6 @@ public class Matriz {
 		int i = 0;
 		int j = 0;
 
-		ArrayList<Boolean> isDominant = new ArrayList<Boolean>();
-
 		for (j = 0; j < m; j++) {
 			for (i = 0; i < n; i++) {
 				if (!vectors.get(i).compare(i))
@@ -59,16 +57,11 @@ public class Matriz {
 		return this.m;
 	}
 	
-	public void mostrar() {
-		this.vectors.stream().forEach(v -> v.mostrar());
-	}
-	
 	public double normaInfinito() {
 		return Collections.max(this.vectors.stream().map(v -> v.sumarFilaAbs()).collect(Collectors.toList()));
 	}
 	
 	public double norma1() {
-		//Norma 1 es la normalInfinito de la transpuesta
 		return this.transposeMatrix().normaInfinito();
 	}
 	
@@ -83,7 +76,7 @@ public class Matriz {
 		ArrayList<Vector> vectores = new ArrayList<Vector>();
 		
 		for (int i = 0; i < this.m; i++) {
-			int j = i; //Por alguna razon no me deja con i
+			int j = i;
 			Vector columnVector = new Vector(this.vectors.stream().mapToDouble(v -> v.valueAt(j)).toArray());
 			vectores.add(columnVector);
 		} 
@@ -198,8 +191,6 @@ public class Matriz {
 	}
 	
 	public Vector multiplyVector(Vector vector) {
-		
-		ArrayList<Vector> vectores = new ArrayList<Vector>();
 		
 		double[] coeficientes = new double[this.m];
 		

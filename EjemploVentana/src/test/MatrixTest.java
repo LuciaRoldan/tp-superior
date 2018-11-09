@@ -1,7 +1,5 @@
 package test;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -118,6 +116,7 @@ public class MatrixTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void testInverseMatrixFailure() {
 		Matriz inverseMatrix = m.inverse();
+		inverseMatrix.columnDominant();
 	}
 	
 	@Test

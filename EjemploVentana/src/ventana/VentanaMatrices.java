@@ -19,41 +19,20 @@ import javax.swing.JOptionPane;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.NumberFormatter;
 
 import EquationProcessor.Matriz;
 import EquationProcessor.Vector;
 
-import java.awt.Button;
-import javax.swing.JFormattedTextField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.InputMethodListener;
-import java.awt.event.InputMethodEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollBar;
-import javax.swing.JFormattedTextField;
 
 public class VentanaMatrices {
 
@@ -92,7 +71,6 @@ public class VentanaMatrices {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		int cantidadEcuaciones;
 		frmSiel = new JFrame();
 		frmSiel.setBackground(Color.WHITE);
 		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaMatrices.class.getResource("/imagenes/Cubo icono chico.jpg")));
@@ -220,12 +198,9 @@ public class VentanaMatrices {
 					if (matriz.isDiagonallyDominant()) {
 						ErrorDom.setVisible(false);
 						Vector coeficientes = inicializarVector(cantidadEcuaciones, table_1);
-						VentanaElegirMetodo elegir = new VentanaElegirMetodo(matriz, coeficientes);
-						elegir.main(null, matriz, coeficientes, frmSiel);
+						VentanaElegirMetodo.main(null, matriz, coeficientes, frmSiel);
 						frmSiel.setVisible(false);
-						// frmSiel.dispose();
 					} else {
-						// ErrorDom.setVisible(true);
 						final JPanel panel = new JPanel();
 
 						JOptionPane.showMessageDialog(panel, "La matriz no es diagonalmente dominante.",
@@ -249,8 +224,7 @@ public class VentanaMatrices {
 		JButton button_1 = new JButton("Inicio");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Inicio elegir = new Inicio();
-				elegir.main(null);
+				Inicio.main(null);
 				frmSiel.dispose();
 			}
 		});
@@ -445,8 +419,6 @@ public class VentanaMatrices {
 		}
 
 		Vector vector = new Vector(array);
-
-		vector.mostrar();
 
 		return vector;
 	}
