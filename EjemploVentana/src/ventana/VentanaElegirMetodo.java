@@ -173,7 +173,6 @@ public class VentanaElegirMetodo {
 				switch(String.valueOf(comboBoxMetodo.getSelectedItem())) {
 					case "Jacobi":
 						System.out.println("Jacobi");
-						//ArrayList<Vector> resultado = new Jacobi().jacobiIterations(matriz, coeficientes, vectorInicial, Double.valueOf(textFieldCotaError.getText()));
 						Result resultado = new Jacobi().jacobiIterations(matriz, coeficientes, vectorInicial, Double.valueOf(textFieldCotaError.getText()));
 						int cantidadCoeficientes = coeficientes.getValues().size();
 						System.out.println("cantidadCoeficientes: ");
@@ -183,8 +182,14 @@ public class VentanaElegirMetodo {
 						frmSiel.setVisible(false);
 						break;
 					case "Gauss Seidel":
-						System.out.println("GS");
-						
+						System.out.println("Gauss Seidel");
+						Result resultadoG = new GaussSeidel().gaussSeidelIterations(matriz, coeficientes, vectorInicial, Double.valueOf(textFieldCotaError.getText()));
+						int cantidadCoeficientesG = coeficientes.getValues().size();
+						System.out.println("cantidadCoeficientes: ");
+						System.out.println(cantidadCoeficientesG);
+						VentanaResultado resG = new VentanaResultado(resultadoG, cantidadCoeficientesG);
+						resG.main(null, resultadoG, cantidadCoeficientesG, frmSiel);
+						frmSiel.setVisible(false);					
 						break;
 					default:
 						break;
