@@ -62,7 +62,7 @@ public class VentanaResultado {
 		frmSiel =  new JFrame();
 		frmSiel.setTitle("SIEL");
 		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaResultado.class.getResource("/imagenes/Cubo icono chico.jpg")));
-		frmSiel.getContentPane().setBackground(new Color(255, 204, 204));
+		frmSiel.getContentPane().setBackground(new Color(255, 235, 205));
 		frmSiel.getContentPane().setForeground(new Color(0, 0, 0));
 		frmSiel.setBounds(100, 100, 940, 402);
 		frmSiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

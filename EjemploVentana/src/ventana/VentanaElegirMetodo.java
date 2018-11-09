@@ -80,7 +80,7 @@ public class VentanaElegirMetodo {
 		frmSiel = new JFrame();
 		frmSiel.setTitle("SIEL");
 		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaElegirMetodo.class.getResource("/imagenes/Cubo icono chico.jpg")));
-		frmSiel.getContentPane().setBackground(new Color(255, 204, 204));
+		frmSiel.getContentPane().setBackground(new Color(255, 235, 205));
 		frmSiel.setBounds(100, 100, 484, 322);
 		frmSiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

@@ -41,7 +41,7 @@ public class Inicio {
 		frmSiel = new JFrame();
 		frmSiel.setTitle("SIEL");
 		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage(Inicio.class.getResource("/imagenes/Cubo icono chico.jpg")));
-		frmSiel.getContentPane().setBackground(new Color(255, 239, 213));
+		frmSiel.getContentPane().setBackground(new Color(255, 235, 205));
 		frmSiel.setBounds(100, 100, 508, 480);
 		frmSiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -105,5 +105,11 @@ public class Inicio {
 					.addContainerGap(25, Short.MAX_VALUE))
 		);
 		frmSiel.getContentPane().setLayout(groupLayout);
+	}
+	public Color getFrmSielContentPaneBackground() {
+		return frmSiel.getContentPane().getBackground();
+	}
+	public void setFrmSielContentPaneBackground(Color background) {
+		frmSiel.getContentPane().setBackground(background);
 	}
 }
