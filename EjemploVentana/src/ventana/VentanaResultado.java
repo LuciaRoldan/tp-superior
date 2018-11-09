@@ -209,9 +209,11 @@ public class VentanaResultado {
 		
 		tabla[0][0] = "||x(n) - x(n-1)||";
 		
-		for(int i = 0; i < cantidadIteraciones; i++) {
-			tabla[i+1][0] = String.valueOf(resultado.getInfinito().getValues().get(i));  
+		for(int i = 0; i < cantidadIteraciones-1; i++) {
+			tabla[i+2][0] = String.valueOf(resultado.getInfinito().getValues().get(i));  
 		}
+		
+		System.out.printf("termine de armar la infinito");
 		
 		return tabla;
 	}
