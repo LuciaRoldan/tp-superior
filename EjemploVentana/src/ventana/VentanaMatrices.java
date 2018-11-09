@@ -98,7 +98,7 @@ public class VentanaMatrices {
 		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaMatrices.class.getResource("/imagenes/Cubo icono chico.jpg")));
 		frmSiel.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		frmSiel.setTitle("SIEL");
-		frmSiel.setBounds(100, 100, 561, 444);
+		frmSiel.setBounds(100, 100, 561, 458);
 		frmSiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -178,6 +178,7 @@ public class VentanaMatrices {
 		lblN.setFont(new Font("Calibri", Font.PLAIN, 12));
 
 		table_1 = new JTable();
+		table_1.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 		table_1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -215,8 +216,6 @@ public class VentanaMatrices {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					int cantidadEcuaciones = Integer.parseInt(textFieldCantidadEcuaciones.getText());
-					table.getCellEditor().stopCellEditing();
-					table_1.getCellEditor().stopCellEditing();
 					Matriz matriz = inicializarMatriz(cantidadEcuaciones, table);
 					if (matriz.isDiagonallyDominant()) {
 						ErrorDom.setVisible(false);
@@ -257,6 +256,7 @@ public class VentanaMatrices {
 		});
 
 		table = new JTable();
+		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 		table.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {

@@ -64,7 +64,7 @@ public class VentanaResultado {
 		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaResultado.class.getResource("/imagenes/Cubo icono chico.jpg")));
 		frmSiel.getContentPane().setBackground(new Color(255, 204, 204));
 		frmSiel.getContentPane().setForeground(new Color(0, 0, 0));
-		frmSiel.setBounds(100, 100, 737, 444);
+		frmSiel.setBounds(100, 100, 737, 402);
 		frmSiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Result resultado = res;
 		int cantidadIteraciones = resultado.getCoeficientes().size();
