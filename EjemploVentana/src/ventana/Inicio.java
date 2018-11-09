@@ -66,15 +66,12 @@ public class Inicio {
 		});
 		GroupLayout groupLayout = new GroupLayout(frmSiel.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(135)
 							.addComponent(lblPorElMtodo))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(144)
-							.addComponent(lblBienvenidosASiel))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(113)
 							.addComponent(lblNewLabel)))
@@ -83,10 +80,14 @@ public class Inicio {
 					.addContainerGap(382, Short.MAX_VALUE)
 					.addComponent(btnComenzar)
 					.addGap(25))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(123)
 					.addComponent(lblNewLabel_1)
 					.addContainerGap(150, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(146)
+					.addComponent(lblBienvenidosASiel)
+					.addContainerGap(179, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)

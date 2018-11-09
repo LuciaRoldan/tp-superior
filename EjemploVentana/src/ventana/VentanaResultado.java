@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 public class VentanaResultado {
 
@@ -71,6 +72,8 @@ public class VentanaResultado {
 		int cantidadIteraciones = resultado.getCoeficientes().size();
 		
 		table = new JTable();
+		table.setBorder(new LineBorder(new Color(0, 0, 0)));
+		table.setEnabled(false);
 		table.setFont(new Font("Calibri", Font.PLAIN, 11));
 				
 		String[][] leTabla = new String[cantidadIteraciones+1][cantidadVariables+1];
@@ -86,6 +89,8 @@ public class VentanaResultado {
 		
 		
 		table_1 = new JTable();
+		table_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		table_1.setEnabled(false);
 		table_1.setFont(new Font("Calibri", Font.PLAIN, 11));
 		String[][] leTablaErrores = new String[cantidadIteraciones+1][cantidadVariables+1];
 		leTablaErrores = crearTablaErrores(resultado, cantidadVariables, cantidadDecimales);	
@@ -94,6 +99,8 @@ public class VentanaResultado {
 		));
 		
 		table_2 = new JTable();
+		table_2.setEnabled(false);
+		table_2.setBorder(new LineBorder(new Color(0, 0, 0)));
 		table_2.setFont(new Font("Calibri", Font.PLAIN, 11));
 		
 		String[] columna = new String[1];

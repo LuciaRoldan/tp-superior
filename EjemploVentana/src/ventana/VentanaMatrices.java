@@ -33,6 +33,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 
 import javax.swing.JSeparator;
+import javax.swing.border.LineBorder;
 
 public class VentanaMatrices {
 
@@ -156,6 +157,7 @@ public class VentanaMatrices {
 		lblN.setFont(new Font("Calibri", Font.PLAIN, 12));
 
 		table_1 = new JTable();
+		table_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		table_1.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 		table_1.addKeyListener(new KeyAdapter() {
 			@Override
@@ -230,6 +232,7 @@ public class VentanaMatrices {
 		});
 
 		table = new JTable();
+		table.setBorder(new LineBorder(new Color(0, 0, 0)));
 		table.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 		table.addKeyListener(new KeyAdapter() {
 			@Override
