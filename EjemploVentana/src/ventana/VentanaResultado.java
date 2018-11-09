@@ -64,7 +64,7 @@ public class VentanaResultado {
 		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaResultado.class.getResource("/imagenes/Cubo icono chico.jpg")));
 		frmSiel.getContentPane().setBackground(new Color(255, 204, 204));
 		frmSiel.getContentPane().setForeground(new Color(0, 0, 0));
-		frmSiel.setBounds(100, 100, 845, 402);
+		frmSiel.setBounds(100, 100, 940, 402);
 		frmSiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Result resultado = res;
 		int cantidadIteraciones = resultado.getCoeficientes().size();
@@ -153,17 +153,17 @@ public class VentanaResultado {
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblIteraciones)
-								.addComponent(table, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE))
+								.addComponent(table, GroupLayout.PREFERRED_SIZE, 375, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+											.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
 											.addGap(171)
 											.addComponent(btnNewButton_2, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
 										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(table_1, GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+											.addComponent(table_1, GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
 											.addPreferredGap(ComponentPlacement.UNRELATED)
 											.addComponent(separator, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
 											.addGap(3)
