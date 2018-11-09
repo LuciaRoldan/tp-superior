@@ -18,10 +18,15 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.UIManager;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 public class VentanaResultado {
 
 	private JFrame frmSiel;
+	private JFrame frameAnterior;
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
@@ -29,12 +34,13 @@ public class VentanaResultado {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args, Result resultado, int cantidadVariables) {
+	public static void main(String[] args, Result resultado, int cantidadVariables, JFrame fAnterior) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					VentanaResultado window = new VentanaResultado(resultado, cantidadVariables);
 					window.frmSiel.setVisible(true);
+					window.frameAnterior = fAnterior;
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -58,7 +64,7 @@ public class VentanaResultado {
 		frmSiel.setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaResultado.class.getResource("/imagenes/Cubo icono chico.jpg")));
 		frmSiel.getContentPane().setBackground(new Color(255, 204, 204));
 		frmSiel.getContentPane().setForeground(new Color(0, 0, 0));
-		frmSiel.setBounds(100, 100, 600, 444);
+		frmSiel.setBounds(100, 100, 737, 444);
 		frmSiel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Result resultado = res;
 		int cantidadIteraciones = resultado.getCoeficientes().size();
@@ -107,54 +113,83 @@ public class VentanaResultado {
 		
 		JButton btnNewButton = new JButton("Nueva Matriz\r\n");
 		btnNewButton.setToolTipText("nuevaMatriz");
-		btnNewButton.setFont(new Font("Calibri", Font.PLAIN, 16));
+		btnNewButton.setFont(UIManager.getFont("Button.font"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new VentanaMatrices().main(null);
+				frameAnterior.dispose();
+				frmSiel.dispose();
 			}
 		});
 		
-		JButton btnNewButton_1 = new JButton("Volver atr\u00E1s");
+		JButton btnNewButton_1 = new JButton("Atr\u00E1s");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frameAnterior.setVisible(true);
+				frmSiel.dispose();
+			}
+		});
 		btnNewButton_1.setToolTipText("volverAtras");
 		
 		JButton btnNewButton_2 = new JButton("Salir");
+		btnNewButton_2.setFont(UIManager.getFont("Button.font"));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frmSiel.dispose();
+			}
+		});
 		btnNewButton_2.setToolTipText("botonSalir");
+		
+		JLabel lblResultados = new JLabel("Resultados");
+		lblResultados.setFont(new Font("Calibri", Font.PLAIN, 20));
+		
+		JSeparator separator = new JSeparator();
+		separator.setOrientation(SwingConstants.VERTICAL);
 		GroupLayout groupLayout = new GroupLayout(frmSiel.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(table, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(table_1, GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(table_2, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
-					.addGap(21))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(73)
-					.addComponent(btnNewButton_1)
-					.addPreferredGap(ComponentPlacement.RELATED, 275, Short.MAX_VALUE)
-					.addComponent(btnNewButton_2)
-					.addGap(92))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(215)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(236, Short.MAX_VALUE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblResultados, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(602, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(table, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(table_1, GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(separator, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+									.addGap(3)
+									.addComponent(table_2, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnNewButton, GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+									.addGap(171)
+									.addComponent(btnNewButton_2, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)))
+							.addGap(21))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(100)
+					.addContainerGap()
+					.addComponent(lblResultados, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(table_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(table_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))
+					.addGap(91)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(table, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(table_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(table_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(136)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNewButton_2)
 						.addComponent(btnNewButton_1)
-						.addComponent(btnNewButton_2))
-					.addGap(29))
+						.addComponent(btnNewButton))
+					.addContainerGap(66, Short.MAX_VALUE))
 		);
 		frmSiel.getContentPane().setLayout(groupLayout);
 	}

@@ -37,6 +37,7 @@ import java.awt.Toolkit;
 public class VentanaElegirMetodo {
 
 	protected JFrame frmSiel;
+	protected JFrame frameAnterior;
 	private JTable tableVectorInicial;
 	private JTextField textFieldCantDecim;
 	private JTextField textFieldCotaError;
@@ -44,12 +45,13 @@ public class VentanaElegirMetodo {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args, Matriz matriz, Vector coeficientes) {
+	public static void main(String[] args, Matriz matriz, Vector coeficientes, JFrame fAnterior) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					VentanaElegirMetodo window = new VentanaElegirMetodo(matriz, coeficientes);
 					window.frmSiel.setVisible(true);
+					window.frameAnterior = fAnterior;
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -153,6 +155,7 @@ public class VentanaElegirMetodo {
 		btnAtrs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frmSiel.dispose();
+				frameAnterior.setVisible(true);
 			}
 		});
 		btnAtrs.setForeground(new Color(0, 0, 0));
@@ -176,10 +179,12 @@ public class VentanaElegirMetodo {
 						System.out.println("cantidadCoeficientes: ");
 						System.out.println(cantidadCoeficientes);
 						VentanaResultado res = new VentanaResultado(resultado, cantidadCoeficientes);
-						res.main(null, resultado, cantidadCoeficientes);
+						res.main(null, resultado, cantidadCoeficientes, frmSiel);
+						frmSiel.setVisible(false);
 						break;
 					case "Gauss Seidel":
 						System.out.println("GS");
+						
 						break;
 					default:
 						break;
