@@ -74,41 +74,32 @@ public class VentanaResultado {
 				
 		String[][] leTabla = new String[cantidadIteraciones+1][cantidadVariables+1];
 		leTabla = crearTablaResultados(resultado, cantidadVariables);
-		
 		String[] arrayDeNewColumn = new String[cantidadVariables+1];
+	
 		
 		for (int i = 0; i < cantidadVariables+1; i++) {
 			arrayDeNewColumn[i] = "New column";
 		}
-
-		
 		table.setModel(new DefaultTableModel(
 			leTabla, arrayDeNewColumn));
 		
+		
 		table_1 = new JTable();
+		String[][] leTablaErrores = new String[cantidadIteraciones+1][cantidadVariables+1];
+		leTablaErrores = crearTablaErrores(resultado, cantidadVariables);	
 		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"x(n)-x(n-1)", "x(1)", "x(2)", "x(3)"},
-				{"x(1)-x(0)", null, null, null},
-				{"x(2)-x(1)", null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column", "New column"
-			}
+			leTablaErrores, arrayDeNewColumn
 		));
 		
 		table_2 = new JTable();
-		table_2.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"||x(n)-x(n-1)||\u221E"},
-				{null},
-				{null},
-				{null},
-			},
-			new String[] {
-				"New column"
-			}
+		
+		String[] columna = new String[1];
+		columna[0] = "New column";
+		
+		String[][] leTablaInfinito = new String[cantidadIteraciones+1][1];
+		leTablaInfinito = crearTablaInfinito(resultado);
+		table_2.setModel(new DefaultTableModel( 
+				leTablaInfinito, columna
 		));
 		
 		JButton btnNewButton = new JButton("Nueva Matriz\r\n");
@@ -211,6 +202,20 @@ public class VentanaResultado {
 		frmSiel.getContentPane().setLayout(groupLayout);
 	}
 
+	private String[][] crearTablaInfinito(Result resultado) {
+		
+		int cantidadIteraciones = resultado.getCoeficientes().size();
+		String[][] tabla = new String[cantidadIteraciones+1][1];
+		
+		tabla[0][0] = "||x(n) - x(n-1)||";
+		
+		for(int i = 0; i < cantidadIteraciones; i++) {
+			tabla[i+1][0] = String.valueOf(resultado.getInfinito().getValues().get(i));  
+		}
+		
+		return tabla;
+	}
+
 	private String[][] crearTablaResultados(Result resultado, int cantidadVariables) {
 		
 		int cantidadIteraciones = resultado.getCoeficientes().size();
@@ -242,4 +247,39 @@ public class VentanaResultado {
 		
 		return tabla;
 	}
+	
+	
+private String[][] crearTablaErrores(Result resultado, int cantidadVariables) {
+		
+		int cantidadIteraciones = resultado.getCoeficientes().size();
+		//System.out.print("cant it" + String.valueOf(cantidadIteraciones));
+		//System.out.print("cant var" + String.valueOf(cantidadVariables));
+		
+		String[][] tabla = new String[cantidadIteraciones+1][cantidadVariables+1];
+		
+		
+		String[] nombreDeColumnas = new String[cantidadVariables+1];
+		nombreDeColumnas[0] = "";
+		for(int i=1; i<cantidadVariables+1; i++) {
+			nombreDeColumnas[i] = "x_" + String.valueOf(i);
+		}
+		
+		tabla[0] = nombreDeColumnas;
+		
+		for(int i = 2; i < cantidadIteraciones+1; i++) {
+			String[] fila = new String[cantidadVariables+1];
+			fila[0] = "x_" + String.valueOf(i-1) + " - x_" + String.valueOf(i-2);
+			for(int j = 1; j < cantidadVariables+1; j++) {
+				//resultado.getErrores().get(i-1).mostrar();
+				fila[j] = String.valueOf(resultado.getErrores().get(i-2).getValues().get(j-1));
+			}
+			//System.out.print("sali de un for chiquito");
+			tabla[i] = fila;
+		}
+		
+		return tabla;
+	}
+	
+	
+	
 }
